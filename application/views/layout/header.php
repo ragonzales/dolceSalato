@@ -74,7 +74,7 @@
 			<ul class="navbar-nav navbar-right">				
 				<li class="dropdown navbar-user">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="<?php echo base_url();?>assets/img/user/user-13.jpg" alt="" /> 
+						<img src="<?php echo base_url();?>assets/img/user/user-12.jpg" alt="" /> 
 						<span class="d-none d-md-inline" id="spanNombreUsuario"></span> <b class="caret"></b>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">

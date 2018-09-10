@@ -16,20 +16,9 @@
 	<script src="<?php echo base_url();?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/js/moment.js"></script>
 	<script src="<?php echo base_url();?>assets/js/panelAdministrador/generico.js"></script>
 	<script src="<?php echo base_url();?>assets/js/panelAdministrador/inicio.js"></script>
-
-	<script type="text/javascript">
-		/*INICIALIZAR VARIABLES GLOBALES*/        
-		var BASE_URL = "<?php echo base_url();?>";
-		$(document).ready(function() {
-			App.init();
-			"use strict";
-			if($("#data-table-responsive").length!==0){
-				$("#data-table-responsive").DataTable({responsive:true})
-			}
-		});
-	</script>
 
 	<?php if($this->uri->segment(2)=='Bocaditos'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditos.js"></script>
@@ -51,7 +40,18 @@
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/postres.js"></script>
 	<?php }?>
 
-	<script>
+
+	<script type="text/javascript">
+		/*INICIALIZAR VARIABLES GLOBALES*/        
+		var BASE_URL = "<?php echo base_url();?>";
+		var tblProductos = null;
+		$(document).ready(function() {
+			App.init();
+			"use strict";
+			if($("#tblProductos").length !== 0 ){
+				tblProductos =  $("#tblProductos").DataTable({responsive:true})
+			}
+		});
 		var btnCust = '';
 		$("#avatar-1").fileinput({
 			overwriteInitial: true,
@@ -65,7 +65,7 @@
 			removeTitle: 'Cancel or reset changes',
 			elErrorContainer: '#kv-avatar-errors-1',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/postres.png" alt="Producto">',
+			defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/postres.png" alt="Producto" id="imgProducto">',
 			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});

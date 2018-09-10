@@ -5,7 +5,7 @@
                 <a href="javascript:;" data-toggle="nav-profile">
                     <div class="cover with-shadow"></div>
                     <div class="image">
-                        <img src="<?php echo base_url();?>assets/img/user/user-13.jpg" alt="" />
+                        <img src="<?php echo base_url();?>assets/img/user/user-12.jpg" alt="" />
                     </div>
                     <div class="info">
                         <label id="lblNombreUsuario" style="color:white"></label>
@@ -24,6 +24,12 @@
                 <a href="<?php echo base_url();?>Inicio">
                     <i class="fa fa-th-large"></i>
                     <span>INICIO</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="<?php echo base_url();?>Coberturas">
+                    <i class="fa fa-th-large"></i>
+                    <span>COBERTURAS</span>
                 </a>
             </li>
 

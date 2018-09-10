@@ -5,7 +5,6 @@ $( document ).ready(function() {
 
 function ObtenerDatosAcceso(){
     var session = ObtenerSession();
-    console.log(session);
     if(session !== null){
         $("#spanNombreUsuario").html(session.nombres + " " + session.apellidos);
         $("#lblNombreUsuario").html(session.nombres + " " + session.apellidos);        

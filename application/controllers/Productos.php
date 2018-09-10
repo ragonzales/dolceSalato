@@ -18,7 +18,7 @@ class Productos extends CI_Controller {
 	{
 		$this->Postres();
 	}
-
+	/*REDIRECCIONES A VISTAS */
 	/*POSTRES*/
 	public function Postres()
 	{
@@ -33,7 +33,7 @@ class Productos extends CI_Controller {
 	{
 		$this->load->view('layout/header');
 		$this->load->view('layout/menu');
-		$this->load->view('producto/Postres');
+		$this->load->view('producto/Bocaditos');
 		$this->load->view('layout/footer');
 	}
 
@@ -42,7 +42,7 @@ class Productos extends CI_Controller {
 	{
 		$this->load->view('layout/header');
 		$this->load->view('layout/menu');
-		$this->load->view('producto/Combos');
+		$this->load->view('producto/Cupckes');
 		$this->load->view('layout/footer');
 	}
 
@@ -64,7 +64,7 @@ class Productos extends CI_Controller {
 		$this->load->view('layout/footer');
 	}	
 
-	public function BuscarMonedas(){
+	public function ListarProductos(){
 		$categoria = $this->input->post("categoria");
 		$resultado = $this->ProductoModel->ListarProductos($categoria);
 		echo json_encode($resultado);

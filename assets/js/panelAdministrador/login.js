@@ -36,8 +36,6 @@ function Logearse(usuario,contrasena){
         async:true,
         dataType: 'json',
         success: function(valor) {
-          console.log(valor);
-          debugger;
           if( valor.hasOwnProperty('usuario') ) {
               AgregarSession(valor);
               RedireccionarIngreso();

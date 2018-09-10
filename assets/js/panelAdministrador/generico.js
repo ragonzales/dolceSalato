@@ -1,6 +1,43 @@
-//$( document ).ready(function() {    
-    //Procesando(CargarCombosGenericos);
-//});
+$( document ).ready(function() {    
+    //ValidarLogin();
+});
+
+// function ValidarLogin(){
+//     debugger;
+//     if(ObtenerSession() == null){
+//         location.href = BASE_URL;
+//     }
+// }
+
+$( "#btnSalir" ).click(function() {
+    debugger;
+    CerrarSesion();
+});
+
+function CerrarSesion(){
+    EliminarSession();
+    RedireccionarLogin();
+}
+
+function RedireccionarIngreso(){
+    location.href = BASE_URL + 'Inicio';
+}
+
+function RedireccionarLogin(){
+    location.href = BASE_URL;
+}
+
+function AgregarSession(usuario){
+    sessionStorage.setItem("usuario", JSON.stringify(usuario));
+}
+
+function EliminarSession(){
+    sessionStorage.clear();
+}
+
+function ObtenerSession(){
+    return JSON.parse(sessionStorage.getItem("usuario"));
+}
 
 function validar_email(email) 
 {

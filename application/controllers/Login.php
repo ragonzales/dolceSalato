@@ -11,16 +11,39 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view('login');
+        $this->load->view('Login');
 	}
     
     public function BuscarUsuario(){
-		echo "asdas";
-        /*
         $usuario = $this->input->post("usuario");
-        $password = $this->input->post("passsword");
-		$resultado = $this->LoginModel->BuscarUsuario($usuario,$password);
-		echo json_encode($resultado);
-        */
+        $contrasena = $this->input->post("contrasena");
+		$resultado = $this->LoginModel->BuscarUsuario($usuario,$contrasena);
+
+		if ($resultado == false)
+		{
+			echo json_encode('Usuario o contraseña incorrectos');
+		}
+		else{
+			echo json_encode($resultado);			
+		}
+	}
+
+	public function RedireccionarInicio(){
+		if($this->session->userdata('usuario')==null){
+			redirect(Login);
+		}
+		else
+		{
+			$this->load->view('layout/header');
+			$this->load->view('layout/menu');
+			$this->load->view('Inicio');
+			$this->load->view('layout/footer');
+		}
+	}
+
+	public function cerrarSesion()
+	{
+		$this->session->sess_destroy();
+		$this->load->view('Login');
 	}
 }

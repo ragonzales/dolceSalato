@@ -5,11 +5,10 @@
                 <a href="javascript:;" data-toggle="nav-profile">
                     <div class="cover with-shadow"></div>
                     <div class="image">
-                        <img src="../assets/img/user/user-13.jpg" alt="" />
+                        <img src="<?php echo base_url();?>assets/img/user/user-13.jpg" alt="" />
                     </div>
                     <div class="info">
-                        <b class="caret pull-right"></b>
-                        Nombre Usuario
+                        <label id="lblNombreUsuario" style="color:white"></label>
                     </div>
                 </a>
             </li>
@@ -22,7 +21,7 @@
         <ul class="nav">
             <li class="nav-header">Navigation</li>
             <li class="active">
-                <a href="<?php echo base_url();?>InicioController/inicio">
+                <a href="<?php echo base_url();?>Inicio">
                     <i class="fa fa-th-large"></i>
                     <span>INICIO</span>
                 </a>
@@ -35,16 +34,15 @@
                     <span>CATEGORIA</span>
                 </a>
                 <ul class="sub-menu">
-                    <li><a href="<?php echo base_url();?>ProductoController/inicio">POSTRES Y TORTAS</a></li>
-                    <li><a href="<?php echo base_url();?>ProductoController/inicio">BOCADITOS</a></li>
-                    <li><a href="<?php echo base_url();?>ProductoController/inicio">CUPCKES</a></li>
-                    <li><a href="<?php echo base_url();?>ProductoController/inicio">COMBOS</a></li>
-                    <li><a href="<?php echo base_url();?>ProductoController/inicio">FESTIVO</a></li>
-                    <li><a href="<?php echo base_url();?>ProductoController/inicio">FESTIVO</a></li>
+                    <li><a href="<?php echo base_url();?>Productos/Bocaditos">BOCADITOS</a></li>
+                    <li><a href="<?php echo base_url();?>Productos/Combos">COMBOS</a></li>
+                    <li><a href="<?php echo base_url();?>Productos/Cupckes">CUPCKES</a></li>
+                    <li><a href="<?php echo base_url();?>Productos/Festivo">FESTIVO</a></li>
+                    <li><a href="<?php echo base_url();?>Productos/Postres">POSTRES Y TORTAS</a></li>
                 </ul>
             </li>
             <li class="active">
-                <a href="<?php echo base_url();?>VentasController/inicio">
+                <a href="<?php echo base_url();?>Ventas">
                     <i class="fa fa-th-large"></i>
                     <span>DETALLE COMPRAS</span>
                 </a>

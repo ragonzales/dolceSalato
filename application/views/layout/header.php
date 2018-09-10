@@ -11,18 +11,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />	
-	<link href="../assets/plugins/fileinput/fileinput.css" media="all" rel="stylesheet" type="text/css"/>	
-	<link href="../assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
-	<link href="../assets/plugins/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css" rel="stylesheet" />
-	<link href="../assets/plugins/animate/animate.min.css" rel="stylesheet" />
-	<link href="../assets/css/default/style.min.css" rel="stylesheet" />
-	<link href="../assets/css/default/style-responsive.min.css" rel="stylesheet" />
-	<link href="../assets/css/default/theme/default.css" rel="stylesheet" id="theme" />
-	<link href="../assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-	<link href="../assets/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" />
-	<script src="../assets/plugins/pace/pace.min.js"></script>
+	<link href="<?php echo base_url();?>assets/plugins/fileinput/fileinput.css" media="all" rel="stylesheet" type="text/css"/>	
+	<link href="<?php echo base_url();?>assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/font-awesome/5.0/css/fontawesome-all.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/animate/animate.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/default/style.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/default/style-responsive.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/css/default/theme/default.css" rel="stylesheet" id="theme" />
+	<link href="<?php echo base_url();?>assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+	<link href="<?php echo base_url();?>assets/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" />
+	<script src="<?php echo base_url();?>assets/plugins/pace/pace.min.js"></script>
 	
 	<style>
 		.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
@@ -49,6 +49,14 @@
 			background-color: #ff5b57!important;
 			color: white;
 		}
+
+		.text-theme, .sidebar .nav > li.active > a i {
+			color: #f59c1a;
+		}
+
+		.header .navbar-logo, .login .login-header .brand .logo, .header .navbar-nav > li > a .label, .label.label-theme, .btn.btn-scroll-to-top {
+			background: #f59c1a;
+		}
 	</style>
 </head>
 <body>
@@ -66,13 +74,11 @@
 			<ul class="navbar-nav navbar-right">				
 				<li class="dropdown navbar-user">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="../assets/img/user/user-13.jpg" alt="" /> 
-						<span class="d-none d-md-inline">Nombre Usuario</span> <b class="caret"></b>
+						<img src="<?php echo base_url();?>assets/img/user/user-13.jpg" alt="" /> 
+						<span class="d-none d-md-inline" id="spanNombreUsuario"></span> <b class="caret"></b>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a href="javascript:;" class="dropdown-item">Editar Perfil</a>
-						<div class="dropdown-divider"></div>
-						<a href="javascript:;" class="dropdown-item">Salir</a>
+						<a href="#" id="btnSalir" class="dropdown-item">Salir</a>
 					</div>
 				</li>
 			</ul>

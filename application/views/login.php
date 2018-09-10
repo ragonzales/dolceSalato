@@ -19,6 +19,13 @@
 	<link href="<?php echo base_url();?>assets/css/default/style-responsive.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>assets/css/default/theme/default.css" rel="stylesheet" id="theme" />
 	<script src="<?php echo base_url();?>assets/plugins/pace/pace.min.js"></script>
+
+    <style>
+        .header .navbar-logo, .login .login-header .brand .logo, .header .navbar-nav > li > a .label, .label.label-theme, .btn.btn-scroll-to-top {
+            background: #f59c1a;
+        }
+    </style>
+    
 </head>
 <body class="pace-top bg-white">
 	<div id="page-loader" class="fade show"><span class="spinner"></span></div>
@@ -48,8 +55,13 @@
                     <div class="form-group m-b-15">
                         <input type="password" id="txtPassword" class="form-control form-control-lg" placeholder="Password" required />
                     </div>
+                    
+                    <div class="alert alert-dark" style="display:none" id="divMensaje">
+                        <label id="lblMensaje"></label>
+                    </div>
+
                     <div class="login-buttons">
-                        <button type="submit" id="btnBuscarUsuario" class="btn btn-success btn-block btn-lg">Ingresar</button>
+                        <button type="submit" id="btnBuscarUsuario" class="btn btn-warning btn-block btn-lg">Ingresar</button>
                     </div>                        
                     <hr />
                     <p class="text-center text-grey-darker">
@@ -70,9 +82,9 @@
     <script src="<?php echo base_url();?>assets/js/panelAdministrador/login.js"></script>    
     <script src="<?php echo base_url();?>assets/js/apps.min.js"></script>
 	
-    <script type="text/javascript">        
+    <script type="text/javascript">
         /*INICIALIZAR VARIABLES GLOBALES*/        
-        var BASE_URL = "<?php echo base_url();?>";        
+        var BASE_URL = "<?php echo base_url();?>";    
         $(document).ready(function() {
             App.init();
         });

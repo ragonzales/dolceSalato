@@ -89,7 +89,7 @@ function ArmarJsonVenta()
         "nombreProducto"    : $("#txtNombreProducto").val(),
         "descripcionCorta"  : $("#txtDescripcionCorta").val(),
         "descripcionLarga"  : $("#txtDescripcionLarga").val(),
-        "imagen"            : 
+        "imagen"            : $("#txtDescripcionLarga")[0].files,
       }
   data["listadoProporciones"] = RecorrerTablaProductosVentas();  
   return data;

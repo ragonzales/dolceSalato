@@ -56,7 +56,7 @@
                         <input type="password" id="txtPassword" class="form-control form-control-lg" placeholder="Password" required />
                     </div>
                     
-                    <div class="alert alert-dark" style="display:none" id="divMensaje">
+                    <div class="alert alert-danger" style="display:none" id="divMensaje">
                         <label id="lblMensaje"></label>
                     </div>
 

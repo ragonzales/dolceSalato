@@ -18,8 +18,8 @@ function BuscarUsuario() {
         mensajeRespuesta="Debe de ingresar el contraseña";
 
     if (mensajeRespuesta != "")
-    {
-        MensajeAlert("LOGIN",mensajeRespuesta,'red');
+    {   
+        SetearMensajeErrorLogin(mensajeRespuesta);
         return;
     }    
     Logearse(usuario,contrasena);

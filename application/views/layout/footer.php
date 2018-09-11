@@ -21,22 +21,27 @@
 	<script src="<?php echo base_url();?>assets/js/panelAdministrador/inicio.js"></script>
 
 	<?php if($this->uri->segment(2)=='Bocaditos'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditos.js"></script>
 	<?php }?>
 
 	<?php if($this->uri->segment(2)=='Combos'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/combos.js"></script>
 	<?php }?>
 
 	<?php if($this->uri->segment(2)=='Cupckes'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckes.js"></script>
 	<?php }?>
 
 	<?php if($this->uri->segment(2)=='Festivo'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/festivo.js"></script>
 	<?php }?>
 
 	<?php if($this->uri->segment(2)=='Postres'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/postres.js"></script>
 	<?php }?>
 
@@ -47,11 +52,8 @@
 		var tblProductos = null;
 		$(document).ready(function() {
 			App.init();
-			"use strict";
-			if($("#tblProductos").length !== 0 ){
-				tblProductos =  $("#tblProductos").DataTable({responsive:true})
-			}
 		});
+		
 		var btnCust = '';
 		$("#avatar-1").fileinput({
 			overwriteInitial: true,

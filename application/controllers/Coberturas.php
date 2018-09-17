@@ -11,15 +11,21 @@ class Coberturas extends CI_Controller {
 
 	public function index()
 	{
-		//$this->Inicio();
-	}    
-   
-	// public function Inicio()
-	// {		
-	// }
+		$this->load->view('layout/header');
+		$this->load->view('layout/menu');
+		$this->load->view('Cobertura');
+		$this->load->view('layout/footer');
+	}
 	
 	public function ListarCoberturas(){
-		$resultado = $this->ProductoModel->ListarCoberturas();
+		$resultado = $this->CoberturaModel->ListarCoberturas();
 		echo json_encode($resultado);
+	}
+
+	public function RegistrarCobertura(){
+		$params['distrito'] = $this->input->post("distrito");
+		$params['usuarioCrea'] = $this->input->post("usuarioCrea");	
+		$this->CoberturaModel->RegistrarCobertura($params);
+		echo json_encode(true);
 	}
 }

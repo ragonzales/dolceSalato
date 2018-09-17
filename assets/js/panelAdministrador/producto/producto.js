@@ -1,11 +1,13 @@
+var MODULO = "MÓDULO DE PRODUCTOS";
 var CONTADOR_PROPORCION = 0;
+var tblProductos = null;
+
 
 $(document).ready(function () {
     "use strict";
     if ($("#tblProductos").length !== 0) {
         tblProductos = $("#tblProductos").DataTable({ responsive: true })
-    }
-    
+    }    
     ListarProductos();
 });
 
@@ -26,7 +28,7 @@ function ListarProductos() {
                         producto.nombre,
                         producto.descripcioncorta,
                         producto.usuariocrea,
-                        producto.fecharegistro,
+                        new Date(producto.fecharegistro).toLocaleString(),
                         '<center><button type="submit" class="btn btn-warning">Eliminar</button></center>',
                         '<center><button type="submit" class="btn btn-primary">Editar</button></center>',
                     ]).draw(false);
@@ -35,7 +37,7 @@ function ListarProductos() {
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
-            //MensajeAlert(MODULO_CLIENTE,'Error en la búsqueda de usuario. Detalle Técnico : ' + errorThrown ,'red');
+            MensajeAlert(MODULO,'Error al listar los productos. Detalle Técnico : ' + errorThrown);
         }
     });
 }
@@ -73,7 +75,6 @@ $("#btnLimpiar").click(function () {
 });
 
 $("#btnRegistrar").click(function () {
-    console.log("ASDASDASD");
     RegistrarProductos();
 });
 
@@ -93,7 +94,7 @@ function RegistrarProductos() {
     var descripcionLarga = $("#txtDescripcionLarga").val().trim();
 
     if ($imagen.length == 0 || nombre == "" || descripcionCorta == "" || descripcionLarga == ""){
-        alert("INGRESE");
+        MensajeAlert(MODULO,"Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
     }
 
@@ -116,11 +117,9 @@ function RegistrarProductos() {
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
-            //MensajeAlert(MODULO_CLIENTE,'Error en la búsqueda de usuario. Detalle Técnico : ' + errorThrown ,'red');
+            MensajeAlert(MODULO,'Error al registrar el producto. Detalle Técnico : ' + errorThrown);
         }
     });
-
-    //return data;
 }
 
 function RecorrerProporciones() {

@@ -30,15 +30,15 @@
                   <div class="tab-content">
                      <div class="tab-pane fade active show" id="nav-pills-tab-1">
                         <div class="row">
-                           <div class="col-sm-4 text-center">
+                            <div class="col-sm-4 text-center">
                               <div class="kv-avatar">
                                  <div class="file-loading">
                                     <input id="avatar-1" name="avatar-1" type="file" required>
                                  </div>
                               </div>
                               <div class="kv-avatar-hint"><small>Archivo < 1500 KB</small></div>
-                           </div>
-                           <div class="col-sm-8">
+                            </div>
+                            <div class="col-sm-8">
                               <div class="row">
                                  <div class="col-sm-6">
                                     <div class="form-group">
@@ -81,9 +81,10 @@
             <div class="form-group">
                <hr>
                <div class="text-right"> 
-                  <button type="submit" class="btn btn-warning" id="btnRegistrar">REGISTRAR PRODUCTO</button>
-                  <button type="submit" class="btn btn-default" id="btnLimpiar" >LIMPIAR</button>
+                    <button type="submit" class="btn btn-warning" id="btnRegistrar">REGISTRAR PRODUCTO</button>
+                    <button type="submit" class="btn btn-default" id="btnLimpiar">LIMPIAR</button>
                </div>
+               
                <hr>
             </div>
          </div>

@@ -32,10 +32,10 @@
 	<div id="page-container" class="fade">
         <div class="login login-with-news-feed">
             <div class="news-feed">
-                <div class="news-image" style="background-image: url(<?php echo base_url();?>assets/img/login-bg/login-bg-11.jpg)"></div>
+                <div class="news-image" style="background-image: url(<?php echo base_url();?>assets/img/login-bg/login-bg-7.jpg)"></div>
                 <div class="news-caption">
                     <h4 class="caption-title"><b>Dolce</b> Salato</h4>
-                    <p>Panel Administrador</p>
+                    <p><label style="background-color : #bd8e01; color:white">PANEL ADMINISTRADOR</label></p>
                 </div>
             </div>
             <div class="right-content">
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="login-buttons">
-                        <button type="submit" id="btnBuscarUsuario" class="btn btn-warning btn-block btn-lg">Ingresar</button>
+                        <button type="submit" id="btnBuscarUsuario" class="btn btn-dark btn-block btn-lg">Ingresar</button>
                     </div>                        
                     <hr />
                     <p class="text-center text-grey-darker">

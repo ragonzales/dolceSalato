@@ -5,12 +5,15 @@
 	<script src="<?php echo base_url();?>assets/plugins/fileinput/fileinput.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/fileinput/fileinput.min.js"></script>	
 	<script src="<?php echo base_url();?>assets/plugins/locales/fr.js"></script>
-	<script src="<?php echo base_url();?>assets/plugins/locales/es.js"></script>	
+	<script src="<?php echo base_url();?>assets/plugins/locales/es.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/js-cookie/js.cookie.js"></script>
 	<script src="<?php echo base_url();?>assets/js/theme/default.min.js"></script>
 	<script src="<?php echo base_url();?>assets/js/apps.min.js"></script>
+	<script src="<?php echo base_url();?>assets/plugins/gritter/js/jquery.gritter.js"></script>
+	<script src="<?php echo base_url();?>assets/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
+	<script src="<?php echo base_url();?>assets/js/demo/ui-modal-notification.demo.min.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 	<script src="<?php echo base_url();?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>	
@@ -19,57 +22,141 @@
 	<script src="<?php echo base_url();?>assets/js/moment.js"></script>
 	<script src="<?php echo base_url();?>assets/js/panelAdministrador/generico.js"></script>
 	<script src="<?php echo base_url();?>assets/js/panelAdministrador/inicio.js"></script>
+	<script src="<?php echo base_url();?>assets/plugins/alerts/js/jquery-confirm.js"></script>
+	
+	<!--INICIALIZAR VARIABLES GLOBALES-->
+	<script type="text/javascript">
+		var BASE_URL = "<?php echo base_url();?>";
+	</script>
 
+	<!--COBERTURAS-->
+	<?php if($this->uri->segment(1)=='Coberturas'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/cobertura.js"></script>
+	<?php }?>
+
+	<!--BOCADITOS-->
 	<?php if($this->uri->segment(2)=='Bocaditos'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditos.js"></script>
+		<script type="text/javascript">
+			$("#avatar-1").fileinput({
+				overwriteInitial: true,
+				maxFileSize: 1500,
+				showClose: false,
+				showCaption: false,
+				browseLabel: '',
+				removeLabel: '',
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+				removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+				removeTitle: 'Cancel or reset changes',
+				elErrorContainer: '#kv-avatar-errors-1',
+				msgErrorClass: 'alert alert-block alert-danger',
+				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/Bocaditos.png" alt="Producto" id="imgProducto">',
+				layoutTemplates: {main2: '{preview} {remove} {browse}'},
+				allowedFileExtensions: ["jpg", "png", "gif"]
+			});
+		</script>
 	<?php }?>
 
+	<!--COMBOS-->
 	<?php if($this->uri->segment(2)=='Combos'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/combos.js"></script>
+		<script type="text/javascript">
+			$("#avatar-1").fileinput({
+				overwriteInitial: true,
+				maxFileSize: 1500,
+				showClose: false,
+				showCaption: false,
+				browseLabel: '',
+				removeLabel: '',
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+				removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+				removeTitle: 'Cancel or reset changes',
+				elErrorContainer: '#kv-avatar-errors-1',
+				msgErrorClass: 'alert alert-block alert-danger',
+				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/Combos.png" alt="Producto" id="imgProducto">',
+				layoutTemplates: {main2: '{preview} {remove} {browse}'},
+				allowedFileExtensions: ["jpg", "png", "gif"]
+			});
+		</script>
 	<?php }?>
 
+	<!--CUPCKES-->
 	<?php if($this->uri->segment(2)=='Cupckes'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckes.js"></script>
+		<script type="text/javascript">
+			$("#avatar-1").fileinput({
+				overwriteInitial: true,
+				maxFileSize: 1500,
+				showClose: false,
+				showCaption: false,
+				browseLabel: '',
+				removeLabel: '',
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+				removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+				removeTitle: 'Cancel or reset changes',
+				elErrorContainer: '#kv-avatar-errors-1',
+				msgErrorClass: 'alert alert-block alert-danger',
+				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/Cupckes.png" alt="Producto" id="imgProducto">',
+				layoutTemplates: {main2: '{preview} {remove} {browse}'},
+				allowedFileExtensions: ["jpg", "png", "gif"]
+			});
+		</script>
 	<?php }?>
 
+	<!--FESTIVO-->
 	<?php if($this->uri->segment(2)=='Festivo'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/festivo.js"></script>
+		<script type="text/javascript">
+			$("#avatar-1").fileinput({
+				overwriteInitial: true,
+				maxFileSize: 1500,
+				showClose: false,
+				showCaption: false,
+				browseLabel: '',
+				removeLabel: '',
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+				removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+				removeTitle: 'Cancel or reset changes',
+				elErrorContainer: '#kv-avatar-errors-1',
+				msgErrorClass: 'alert alert-block alert-danger',
+				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/Festivo.png" alt="Producto" id="imgProducto">',
+				layoutTemplates: {main2: '{preview} {remove} {browse}'},
+				allowedFileExtensions: ["jpg", "png", "gif"]
+			});
+		</script>
 	<?php }?>
 
+	<!--POSTRES-->
 	<?php if($this->uri->segment(2)=='Postres'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/postres.js"></script>
+		<script type="text/javascript">
+			$("#avatar-1").fileinput({
+				overwriteInitial: true,
+				maxFileSize: 1500,
+				showClose: false,
+				showCaption: false,
+				browseLabel: '',
+				removeLabel: '',
+				browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+				removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+				removeTitle: 'Cancel or reset changes',
+				elErrorContainer: '#kv-avatar-errors-1',
+				msgErrorClass: 'alert alert-block alert-danger',
+				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/Postres.png" alt="Producto" id="imgProducto">',
+				layoutTemplates: {main2: '{preview} {remove} {browse}'},
+				allowedFileExtensions: ["jpg", "png", "gif"]
+			});
+		</script>
 	<?php }?>
 
-
-	<script type="text/javascript">
-		/*INICIALIZAR VARIABLES GLOBALES*/        
-		var BASE_URL = "<?php echo base_url();?>";
-		var tblProductos = null;
+	<script type="text/javascript">		
 		$(document).ready(function() {
 			App.init();
-		});
-		
-		var btnCust = '';
-		$("#avatar-1").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 1500,
-			showClose: false,
-			showCaption: false,
-			browseLabel: '',
-			removeLabel: '',
-			browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
-			removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
-			removeTitle: 'Cancel or reset changes',
-			elErrorContainer: '#kv-avatar-errors-1',
-			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/postres.png" alt="Producto" id="imgProducto">',
-			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
-			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
 </body>

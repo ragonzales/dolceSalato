@@ -45,29 +45,52 @@ function validar_email(email)
     return regex.test(email) ? true : false;
 }
 
-function MensajeAlert(modulo,mensajeRespuesta,color){
-  $.dialog({
-      title: modulo,
-      content: mensajeRespuesta,
-      type:color,
-      typeAnimated : true
+function MensajeAlert(titulo,mensaje){
+    $.gritter.add({
+        title: titulo,
+        text: mensaje,
+        sticky: false,
+        class_name: 'my-sticky-class'
     });
 }
 
-function AlertaConfirmacion(MODULO, mensajeContenido, funcionConfirmar, mensajeError){
-  $.confirm({
-    title: MODULO,
-    content: mensajeContenido,
-    buttons: {
-        confirmar: function () {
-          funcionConfirmar();
-        },
-        cancelar: function () {
-          MensajeAlert(MODULO,mensajeError,'blue');
+function AlertaConfirmacion(MODULO, mensajeContenido, mensajeError){
+    $.confirm({
+        title: 'Confirm!',
+        content: 'Simple confirm!',
+        buttons: {
+            confirm: function () {
+                $.alert('Confirmed!');
+            },
+            cancel: function () {
+                $.alert('Canceled!');
+            },
+            somethingElse: {
+                text: 'Something else',
+                btnClass: 'btn-blue',
+                keys: ['enter', 'shift'],
+                action: function(){
+                    $.alert('Something else?');
+                }
+            }
         }
-    }
-  });
-}
+    });
+  }
+
+// function AlertaConfirmacion(MODULO, mensajeContenido, funcionConfirmar, mensajeError){
+//   $.confirm({
+//     title: MODULO,
+//     content: mensajeContenido,
+//     buttons: {
+//         confirmar: function () {
+//           funcionConfirmar();
+//         },
+//         cancelar: function () {
+//           MensajeAlert(MODULO,mensajeError,'blue');
+//         }
+//     }
+//   });
+// }
 
 function Procesando(functionProcesar){
     var modal = $("#processing-modal");

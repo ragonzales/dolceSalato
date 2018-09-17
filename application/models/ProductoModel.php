@@ -37,5 +37,20 @@ class ProductoModel extends CI_Model
 		$this->db->where('IdProducto', $params['IdProducto']);
 		return $this->db->update('producto', $data);
 	}
+
+	public function RegistrarProporcionProducto($IdProducto, $listadoProporciones)
+	{
+		foreach ($listadoProporciones as $key => $proporcion) {
+			$data = array(
+				'IdProducto'		=> $IdProducto,
+				'proporcion' 		=> $proporcion['descripcionNota'],
+				'precio' 			=> $proporcion['precio'],
+				'estado' 			=> 1
+				);
+			
+			$this->db->set('fecha_modifica', 'NOW()', FALSE);
+			$this->db->insert('notaOrdenCompra', $data);
+		}
+	}
 }
 ?>

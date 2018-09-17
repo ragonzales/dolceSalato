@@ -24,8 +24,20 @@ class Coberturas extends CI_Controller {
 
 	public function RegistrarCobertura(){
 		$params['distrito'] = $this->input->post("distrito");
-		$params['usuarioCrea'] = $this->input->post("usuarioCrea");	
+		$params['usuarioCrea'] = $this->input->post("usuarioCrea");
 		$this->CoberturaModel->RegistrarCobertura($params);
 		echo json_encode(true);
+	}
+
+	public function ActualizarCobertura(){
+		$cobertura = $_POST;		
+		$this->CoberturaModel->ActualizarCobertura($cobertura);
+		echo json_encode(true);
+	}
+
+	public function BuscarCobertura(){
+		$IdCobertura = $this->input->post("IdCobertura");	
+		$resultado = $this->CoberturaModel->BuscarCobertura($IdCobertura);
+		echo json_encode($resultado);
 	}
 }

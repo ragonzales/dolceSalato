@@ -24,18 +24,20 @@
                             <input type="text" id="txtDistrito" class="form-control m-b-5" placeholder="Ingrese el Distrito" />
                         </div>
                         <div class="col-md-3">
-                            <button type="button" id="btnRegistrar" class="btn btn-dark"><i class="fa fa-plus"></i>&nbsp;Registrar</button>
+                            <button type="button" id="btnRegistrar" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Registrar</button>
                         </div>								
                     </div>						
                     <table id="tblCoberturas" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th width="1%"></th>
-                                <th class="text-nowrap">Descripcion</th>
-                                <th class="text-nowrap">Usuario Registro</th>
-                                <th class="text-nowrap">Fecha Registro</th>
+                                <th class="text-nowrap">DISTRITO COBERTURA</th>
+                                <th class="text-nowrap">ESTADO</th>
+                                <th class="text-nowrap">USUARIO REGISTRO</th>
+                                <th class="text-nowrap">FECHA REGISTRO</th>
+                                <th class="text-nowrap">USUARIO BAJA</th>
+                                <th class="text-nowrap">FECHA BAJA</th>
                                 <th class="text-nowrap"></th>
-                                <!--<th class="text-nowrap"></th>-->
                             </tr>
                         </thead>
                     </table>
@@ -43,5 +45,94 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalCobertura">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">EDITAR COBERTURA</h4>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+                </div>
+                <div class="modal-body">                                
+                    <input type="hidden" class="form-control" id="txtIdCoberturaEditar">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span>Cobertura  </span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="txtCoberturaEditar">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 tamano"></div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-4 col-ms-4">
+                            <span>Estado  </span>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="switcher switcher-success">
+                                <input type="checkbox" name="switcher_checkbox_5" id="switcher_checkbox_5"/>
+                                <label for="switcher_checkbox_5"></label>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 tamano"></div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span>Usuario Registra  </span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="txtUsuarioRegistraEditar" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 tamano"></div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span>Fecha Registro  </span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="txtFechaRegistroEditar" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 tamano"></div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span>Usuario Baja  </span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="txtUsuarioBajaEditar" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 tamano"></div>
+
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <span>Fecha Baja  </span>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="txtFechaBajaEditar" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 tamano"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Cerrar</a>
+                    <a href="javascript:;" class="btn btn-success" id="btnActualizar">Actualizar Información</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 		

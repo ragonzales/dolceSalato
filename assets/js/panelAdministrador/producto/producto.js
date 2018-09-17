@@ -1,13 +1,14 @@
 var MODULO = "MÓDULO DE PRODUCTOS";
-var CONTADOR_PROPORCION = 0;
+//var CONTADOR_PROPORCION = 0;
 var tblProductos = null;
-
+var tblProductosProporcion = null;
 
 $(document).ready(function () {
     "use strict";
-    if ($("#tblProductos").length !== 0) {
-        tblProductos = $("#tblProductos").DataTable({ responsive: true })
-    }    
+    // if ($("#tblProductos").length !== 0) {
+    // }
+    tblProductos = CargarDatatableConFiltros("#tblProductos");
+    tblProductosProporcion = CargarDatatableSinFiltros("#tblProductosProporcion");    
     ListarProductos();
 });
 
@@ -25,12 +26,13 @@ function ListarProductos() {
                     contador++
                     tblProductos.row.add([
                         contador,
-                        producto.nombre,
-                        producto.descripcioncorta,
-                        producto.usuariocrea,
-                        new Date(producto.fecharegistro).toLocaleString(),
-                        '<center><button type="submit" class="btn btn-warning">Eliminar</button></center>',
-                        '<center><button type="submit" class="btn btn-primary">Editar</button></center>',
+                        ((producto.nombre == null) ? '' : item.nombre),
+                        ((producto.estado == 1) ? 'Activo' : 'Desactivado'),
+                        ((producto.usuariocrea == null) ? '' : producto.usuariocrea),
+                        ((producto.fechacrea == null) ? '' : new Date(producto.fechacrea).toLocaleString()),
+                        ((producto.usuariobaja == null) ? '' : producto.usuariobaja),
+                        ((producto.fechabaja == null) ? '' : new Date(producto.fechabaja).toLocaleString()),
+                        '<center><button type="submit" class="btn btn-warning">Editar</button></center>',
                     ]).draw(false);
                 });
             }
@@ -47,28 +49,27 @@ $("#btnAgregarProporcion").click(function () {
 });
 
 function AgregarProporcion() {
-    CONTADOR_PROPORCION++;
-    var divProporcion = '';
-    var divID = "dv" + CONTADOR_PROPORCION;
-    divProporcion += '<div id = "' + divID + '">';
-    divProporcion += '<div class="col-sm-12">'
-    divProporcion += '<div class="col-sm-4">'
-    divProporcion += '<input type="text" class="form-control" name="text" required>'
-    divProporcion += '</div>'
-    divProporcion += '<div class="col-sm-6">'
-    divProporcion += '<button class="btnEliminar btn bg-danger" contador="' + divID + '" ><i class="fa fa-trash"> Eliminar</i></button>'
-    divProporcion += '</div>'
-    divProporcion += '</div>'
-    divProporcion += '</br></br></br>'
-    divProporcion += '</div>';
-    $("#dvProporcionProductos").append(divProporcion);
+    var proporcion  = $("#txtProporcion").val().trim();
+    var precio      = $("#txtPrecio").val().trim();
 
-    $(".btnEliminar").click(function () {
-        debugger;
-        var contador = $(this).attr('contador');
-        $("#" + contador).remove();
-    });
+    if(proporcion == "" || precio == ""){
+        MensajeAlert("MÓDULO DE PRODUCTOS", "Debe de ingresar la proporción y el precio.");
+        return;
+    }
+
+    tblProductosProporcion.row.add([
+        proporcion,
+        precio,
+        '<center><button type="submit" class="btnprueba btn btn-dark">Eliminar</button></center>',
+    ]).draw(false);
+
+    $("#txtProporcion").val('');
+    $("#txtPrecio").val('');
 }
+
+$('#tblProductosProporcion').on("click", ".btnprueba", function () {
+    tblProductosProporcion.row($(this).parents('tr')).remove().draw(false);
+});
 
 $("#btnLimpiar").click(function () {
     Limpiar();
@@ -83,7 +84,9 @@ function Limpiar() {
     $("#txtNombreProducto").val('');
     $("#txtDescripcionCorta").val('');
     $("#txtDescripcionLarga").val('');
-    $(".fileinput-remove-button").click();
+    $(".fileinput-remove-button").click();    
+    tblProductosProporcion.clear().draw();
+    ListarProductos();
 }
 
 function RegistrarProductos() {
@@ -123,5 +126,29 @@ function RegistrarProductos() {
 }
 
 function RecorrerProporciones() {
-    
+    var listaProductosTabla = new Array();
+    $("#tblProductosProporcion tbody tr").each(function (index) {
+        var proporcion, precio;
+        $(this).children("td").each(function (index2) {
+            switch (index2) {
+                case 0:
+                    proporcion = $(this).text();
+                    break;
+                case 1:
+                    precio = $(this).text();
+                    break;
+            }
+        })
+        var producto = null;
+        producto = ObjetoProductoProporcion(proporcion, precio);
+        listaProductosTabla.push(producto);
+    })
+    return listaProductosTabla;
+}
+
+function ObjetoProductoProporcion(proporcion, precio) {
+    var producto = new Object();
+    producto.proporcion = proporcion;
+    producto.precio = precio;
+    return producto;
 }

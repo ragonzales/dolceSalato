@@ -23,45 +23,8 @@
 	<link href="<?php echo base_url();?>assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>assets/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
-	<link href="<?php echo base_url();?>assets/plugins/alerts/css/jquery-confirm.css" rel="stylesheet" >
-
-	<script src="<?php echo base_url();?>assets/plugins/pace/pace.min.js"></script>
-	
-	
-	<style>
-		.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
-			margin: 0;
-			padding: 0;
-			border: none;
-			box-shadow: none;
-			text-align: center;
-		}
-		.kv-avatar {
-			display: inline-block;
-		}
-		.kv-avatar .file-input {
-			display: table-cell;
-			width: 213px;
-		}
-		.kv-reqd {
-			color: red;
-			font-family: monospace;
-			font-weight: normal;
-		}
-		
-		.bg-danger, .bg-red {
-			background-color: #ff5b57!important;
-			color: white;
-		}
-
-		.text-theme, .sidebar .nav > li.active > a i {
-			color: #f59c1a;
-		}
-
-		.header .navbar-logo, .login .login-header .brand .logo, .header .navbar-nav > li > a .label, .label.label-theme, .btn.btn-scroll-to-top {
-			background: #f59c1a;
-		}
-	</style>
+	<script src="<?php echo base_url();?>assets/plugins/pace/pace.min.js"></script>	
+	<link href="<?php echo base_url();?>assets/css/generico.css" rel="stylesheet" />	
 </head>
 <body>
 	<div id="page-loader" class="fade"><span class="spinner"></span></div>

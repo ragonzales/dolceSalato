@@ -76,15 +76,24 @@ class Productos extends CI_Controller {
 		$nombreProducto = $this->input->post("nombreProducto");
 		$descripcionCorta = $this->input->post("descripcionCorta");
 		$descripcionLarga = $this->input->post("descripcionLarga");
+		$listadoProporciones = $this->input->post("listadoProporciones");
+
 		$cargaImagen = $this->CargarLibreriaUpload($categoria);	
 
 		if ($cargaImagen == false)
 		{
 			echo json_encode($error);
-		}else
+		}
+		else
 		{
-			$resultado = $this->ProductoModel->RegistrarProductos($categoria);
-			$resultado = $this->ProductoModel->RegistrarProporcionProductos($categoria);
+			$IdProducto = $this->ProductoModel->RegistrarProductos($categoria);
+			if($listadoProporciones == null)
+				$cantidadProporciones = 0;
+			else
+				$cantidadProporciones= count($listadoProporciones);
+			
+			//$resultado = $this->ProductoModel->RegistrarProporcionProductos($categoria);			
+			if ($cantidadProporciones > 0) $this->ProductoModel->RegistrarProporcionProductos($IdProducto, $listadoProporciones);
 			echo json_encode(true);
 		}
 	}

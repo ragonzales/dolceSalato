@@ -1,16 +1,7 @@
-$( document ).ready(function() {    
-    //ValidarLogin();
-});
-
-// function ValidarLogin(){
-//     debugger;
-//     if(ObtenerSession() == null){
-//         location.href = BASE_URL;
-//     }
-// }
+// $( document ).ready(function() {    
+// });
 
 $( "#btnSalir" ).click(function() {
-    debugger;
     CerrarSesion();
 });
 
@@ -54,51 +45,6 @@ function MensajeAlert(titulo,mensaje){
     });
 }
 
-function AlertaConfirmacion(MODULO, mensajeContenido, mensajeError){
-    $.confirm({
-        title: 'Confirm!',
-        content: 'Simple confirm!',
-        buttons: {
-            confirm: function () {
-                $.alert('Confirmed!');
-            },
-            cancel: function () {
-                $.alert('Canceled!');
-            },
-            somethingElse: {
-                text: 'Something else',
-                btnClass: 'btn-blue',
-                keys: ['enter', 'shift'],
-                action: function(){
-                    $.alert('Something else?');
-                }
-            }
-        }
-    });
-  }
-
-// function AlertaConfirmacion(MODULO, mensajeContenido, funcionConfirmar, mensajeError){
-//   $.confirm({
-//     title: MODULO,
-//     content: mensajeContenido,
-//     buttons: {
-//         confirmar: function () {
-//           funcionConfirmar();
-//         },
-//         cancelar: function () {
-//           MensajeAlert(MODULO,mensajeError,'blue');
-//         }
-//     }
-//   });
-// }
-
-function Procesando(functionProcesar){
-    var modal = $("#processing-modal");
-    EventoModal(modal,'show');
-    functionProcesar();
-    EventoModal(modal,'hide');
-}
-
 function EventoModal(modal,evento){
     modal.modal(evento);
 }
@@ -110,25 +56,15 @@ function CrearModal(){
 }
 
 function number_format(amount, decimals) {
-
-    amount += ''; // por si pasan un numero en vez de un string
-    amount = parseFloat(amount.replace(/[^0-9\.]/g, '')); // elimino cualquier cosa que no sea numero o punto
-  
-    decimals = decimals || 0; // por si la variable no fue fue pasada
-  
-    // si no es un numero o es igual a cero retorno el mismo cero
-    if (isNaN(amount) || amount === 0)
-        return parseFloat(0).toFixed(decimals);
-  
-    // si es mayor o menor que cero retorno el valor formateado como numero
-    amount = '' + amount.toFixed(decimals);
-  
+    amount += '';
+    amount = parseFloat(amount.replace(/[^0-9\.]/g, ''));
+    decimals = decimals || 0;
+    if (isNaN(amount) || amount === 0) return parseFloat(0).toFixed(decimals);  
+    amount = '' + amount.toFixed(decimals);  
     var amount_parts = amount.split('.'),
-    regexp = /(\d+)(\d{3})/;
-  
+    regexp = /(\d+)(\d{3})/;  
     while (regexp.test(amount_parts[0]))
-        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
-  
+        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2'); 
     return amount_parts.join('.');
 }
 
@@ -144,38 +80,19 @@ function validarDecimales(e,thix) {
 
 function ReemplazoNulo(parametro) {
     var valor = '';
-    if (parametro != null && parametro != undefined)
-        valor = parametro;
-    
+    if (parametro != null && parametro != undefined) valor = parametro;    
     return valor;
 }
 
 function ReemplazoNuloMonto(parametro) {
     var valor = 0;
-    if (parametro != null && parametro != undefined)
-        valor = parseFloat(parametro);
-    
+    if (parametro != null && parametro != undefined) valor = parseFloat(parametro);    
     return valor;
 }
 
 function sumarDias(fecha, dias){
     fecha.setDate(fecha.getDate() + dias);
     return fecha;
-}
-
-function MultiplicarMontos() {
-    var precioUnitario = $("#txtPrecioUnitarioModal").val();
-    var cantidad= $("#txtCantidadModal").val();
-    var precioTotal = 0;
-    
-    if (cantidad == null || cantidad == undefined)
-      cantidad = 0;
-  
-    if (precioUnitario == null || precioUnitario == undefined)
-      precioUnitario = 0;
-  
-    precioTotal = cantidad * precioUnitario;
-    $("#txtPrecioTotalModal").val(number_format(ReemplazoNuloMonto(precioTotal),2));
 }
 
 function numeroFormato(num,cantidadCaracteres){
@@ -187,4 +104,65 @@ function numeroFormato(num,cantidadCaracteres){
 	pendientes=cantidadCaracteres-largo;
 	for(i=0;i<pendientes;i++)ceros+='0';
 	return ceros+numtmp;
+}
+
+function CargarDatatableConFiltros(nombreTabla) {
+    return $(nombreTabla).DataTable({
+        responsive: true ,
+        paging: true,
+        filter: true,
+        ordering: true,
+        info: true,
+        language: {
+            oPaginate: {
+                sNext: "Siguiente",
+                sPrevious: "Anterior"
+            },
+            emptyTable: "No hay registros para los filtros buscados",
+            lengthMenu: " Registros _MENU_ ",
+            info: "Página _PAGE_ de _PAGES_",
+            infoEmpty: "No se encontraron registros",
+            emptyTable: "No hay registros para los filtros buscados",
+            sLengthMenu: "     _MENU_ registros por pagina",
+            sZeroRecords: "No se encontraron registros",
+            sInfo: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            sInfoEmpty: "Mostrandro 0 a 0 de 0 registros",
+            sInfoFiltered: "(filtrado de _MAX_ registros)",
+            sLoadingRecords: "Un momento por favor - cargando...",
+            sSearch: "Filtro:",
+            sProcessing: "Cargando..."
+        },
+        lengthMenu: [10, 20, 30, 40, 50]//,
+    });  
+}
+
+function CargarDatatableSinFiltros(nombreTabla) {
+    return $(nombreTabla).DataTable({
+        responsive: true,
+        paging: true,
+        filter: false,
+        ordering: true,
+        info: true,
+        language: {
+            oPaginate: {
+                sNext: "Siguiente",
+                sPrevious: "Anterior"
+            },
+            emptyTable: "No hay registros para los filtros buscados",
+            lengthMenu: " Registros _MENU_ ",
+            info: "Página _PAGE_ de _PAGES_",
+            infoEmpty: "No se encontraron registros",
+            emptyTable: "No hay registros para los filtros buscados",
+            sLengthMenu: "     _MENU_ registros por pagina",
+            sZeroRecords: "No se encontraron registros",
+            sInfo: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            sInfoEmpty: "Mostrandro 0 a 0 de 0 registros",
+            sInfoFiltered: "(filtrado de _MAX_ registros)",
+            sLoadingRecords: "Un momento por favor - cargando...",
+            sSearch: "Filtro:",
+            sProcessing: "Cargando..."
+        },
+        lengthMenu: [10, 20, 30, 40, 50]//,
+    });
+
 }

@@ -72,13 +72,14 @@ class Productos extends CI_Controller {
 
 	public function RegistrarProductos()
 	{
-		$categoria = $this->input->post("categoria");
-		$nombreProducto = $this->input->post("nombreProducto");
+		$usuario = $this->input->post("usuario");
+		$IdCategoria = $this->input->post("IdCategoria");
+		$nombreProducto = $this->input->post("nombreProducto");		
 		$descripcionCorta = $this->input->post("descripcionCorta");
 		$descripcionLarga = $this->input->post("descripcionLarga");
 		$listadoProporciones = $this->input->post("listadoProporciones");
 
-		$cargaImagen = $this->CargarLibreriaUpload($categoria);	
+		$cargaImagen = $this->CargarLibreriaUpload($IdCategoria);	
 
 		if ($cargaImagen == false)
 		{
@@ -86,21 +87,22 @@ class Productos extends CI_Controller {
 		}
 		else
 		{
-			$IdProducto = $this->ProductoModel->RegistrarProductos($categoria);
+			$directorio = $this->ObtenerDirectorio($IdCategoria);
+			$IdProducto = $this->ProductoModel->RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $directorio);
 			if($listadoProporciones == null)
-				$cantidadProporciones = 0;
+			 	$cantidadProporciones = 0;
 			else
-				$cantidadProporciones= count($listadoProporciones);
+			 	$cantidadProporciones= count($listadoProporciones);
 			
-			//$resultado = $this->ProductoModel->RegistrarProporcionProductos($categoria);			
-			if ($cantidadProporciones > 0) $this->ProductoModel->RegistrarProporcionProductos($IdProducto, $listadoProporciones);
+			if ($cantidadProporciones > 0) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones);
 			echo json_encode(true);
+			
 		}
 	}
 
-	public function CargarLibreriaUpload($categoria)
+	public function ObtenerDirectorio($IdCategoria)
 	{
-		switch ($categoria) {
+		switch ($IdCategoria) {
 			case '1':
 				$dir = './Upload_Bocaditos/';
 				break;
@@ -114,10 +116,15 @@ class Productos extends CI_Controller {
 				$dir = './Upload_Festivo/';
 				break;
 			case '5':
-				$dir = './Upload_Postres/';
+				$dir = './Upload_Postres/';				
 				break;
 		}
+		return $dir;
+	}
 
+	public function CargarLibreriaUpload($IdCategoria)
+	{
+		$dir = $this->ObtenerDirectorio($IdCategoria);
 		$config['upload_path'] = $dir;
         $config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size'] = 2048;		

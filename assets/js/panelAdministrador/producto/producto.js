@@ -105,7 +105,7 @@ function RegistrarProductos() {
     formData.append('descripcionCorta', descripcionCorta);
     formData.append('descripcionLarga', descripcionLarga);       
     formData.append('listadoProporciones', RecorrerProporciones());
-    formData.append('categoria', CATEGORIA);
+    formData.append('IdCategoria', CATEGORIA);
     formData.append('foto', $imagen[0]);
 
     $.ajax({

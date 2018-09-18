@@ -25,7 +25,7 @@ function ListarCoberturas() {
                     tblCoberturas.row.add([
                         contador,
                         ((item.distrito == null) ? '' : item.distrito),
-                        ((item.activo == 1) ? 'Activo' : 'Desactivado'),
+                        ((item.activo == 1) ? 'ACTIVO' : 'DESACTIVADO'),
                         ((item.usuariocrea == null) ? '' : item.usuariocrea),
                         ((item.fechacrea == null) ? '' : new Date(item.fechacrea).toLocaleString()),
                         ((item.usuariobaja == null) ? '' : item.usuariobaja),

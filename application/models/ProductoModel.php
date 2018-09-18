@@ -13,15 +13,6 @@ class ProductoModel extends CI_Model
 		return $query->result();
 	}
 
-	public function BuscarProducto($IdProducto)
-	{	
-		$sql = "SELECT *";
-		$sql .= " FROM producto";
-		$sql .= " Where idProducto = ?";
-		$query = $this->db->query($sql, array($IdProducto));
-		return $query->row();
-	}
-
 	public function ActualizarProducto($params){
 		$data = array(
 						'IdProducto' => $params['IdProducto'],
@@ -69,6 +60,26 @@ class ProductoModel extends CI_Model
 			$this->db->set('fecha_registro', 'NOW()', FALSE);
 			$this->db->insert('notaOrdenCompra', $data);
 		}
+	}
+
+	public function ActualizarEstadoProducto($IdProducto,$estado,$usuario)
+	{
+		if($estado == '0'){
+			$this->db->set('estado', 0, FALSE);
+			$this->db->set('usuarioBaja',"'" . $usuario . "'", FALSE);
+			$this->db->set('fechaBaja', 'NOW()', FALSE);
+		}else {
+			$this->db->set('estado', 1, FALSE);
+		}
+
+		$this->db->where('IdProducto', $IdProducto);
+		return $this->db->update('producto');	
+	}
+
+	public function BuscarProducto($IdProducto)
+	{	
+		$query = $this->db->get_where('producto', array('IdProducto' => $IdProducto));
+		return $query->row();
 	}
 }
 ?>

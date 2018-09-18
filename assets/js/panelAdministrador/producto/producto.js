@@ -5,8 +5,6 @@ var tblProductosProporcion = null;
 
 $(document).ready(function () {
     "use strict";
-    // if ($("#tblProductos").length !== 0) {
-    // }
     tblProductos = CargarDatatableConFiltros("#tblProductos");
     tblProductosProporcion = CargarDatatableSinFiltros("#tblProductosProporcion");    
     ListarProductos();
@@ -21,25 +19,85 @@ function ListarProductos() {
         async: true,
         dataType: 'json',
         success: function (listaProductos) {
+            tblProductos.clear().draw();
             if (listaProductos != null) {
-                listaProductos.forEach(function (producto) {
+                listaProductos.forEach(function (producto) {                    
+                    var checked = ((producto.estado == 1) ? 'checked' : ''); 
                     contador++
                     tblProductos.row.add([
                         contador,
-                        ((producto.nombre == null) ? '' : item.nombre),
-                        ((producto.estado == 1) ? 'Activo' : 'Desactivado'),
+                        ((producto.nombre == null) ? '' : producto.nombre),
                         ((producto.usuariocrea == null) ? '' : producto.usuariocrea),
-                        ((producto.fechacrea == null) ? '' : new Date(producto.fechacrea).toLocaleString()),
+                        ((producto.fecharegistro == null) ? '' : new Date(producto.fecharegistro).toLocaleString()),
                         ((producto.usuariobaja == null) ? '' : producto.usuariobaja),
                         ((producto.fechabaja == null) ? '' : new Date(producto.fechabaja).toLocaleString()),
-                        '<center><button type="submit" class="btn btn-warning">Editar</button></center>',
+                        '<label class="switch">'+
+                        '<input type="checkbox" class= "success" onchange="CambiarEstadoProducto(' + producto.idproducto + ',this)"' + checked + '/>' +
+                        '<span class="slider round"></span>',
+                        '<center><button type="submit" class="btn btn-dark" onclick="BuscarProducto(' + producto.idproducto + ')">Editar</button></center>',
                     ]).draw(false);
                 });
-            }
+            }          
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
             MensajeAlert(MODULO,'Error al listar los productos. Detalle Técnico : ' + errorThrown);
+        }
+    });
+}
+
+function BuscarProducto(IdProducto) {
+    console.log(IdProducto);
+
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + 'Productos/BuscarProducto',
+        data: {
+            "IdProducto": IdProducto
+        },
+        async: true,
+        dataType: 'json',
+        success: function (producto) {
+            console.log(producto);
+            AsignarProducto(producto)
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
+            MensajeAlert(MODULO, 'Error al listar los productos. Detalle Técnico : ' + errorThrown);
+        }
+    });
+}
+
+function AsignarProducto(producto) {    
+    $("#txtNombreProducto").val(producto.nombre);
+    $("#txtDescripcionCorta").val(producto.descripcioncorta);
+    $("#txtDescripcionLarga").val(producto.descripcionlarga);
+    //$("#txtNombreProducto").val(producto.);
+}
+
+function CambiarEstadoProducto(IdProducto,element) {
+    console.log(IdProducto);
+    console.log(element);
+    var session = ObtenerSession();
+
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + 'Productos/ActualizarEstadoProducto',
+        data:{ 
+                "IdProducto" : IdProducto,
+                "estado"     : (($(element).is(':checked')) ? 1 : 0),
+                "usuario"    : session.usuario,
+             },
+        async: true,
+        dataType: 'json',
+        success: function (respuesta) {
+            console.log(respuesta);
+            ListarProductos();
+            MensajeAlert("MÓDULO DE PRODUCTOS", "Se actualizó el estado del producto");         
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
+            MensajeAlert(MODULO, 'Error al listar los productos. Detalle Técnico : ' + errorThrown);
         }
     });
 }
@@ -84,13 +142,14 @@ function Limpiar() {
     $("#txtNombreProducto").val('');
     $("#txtDescripcionCorta").val('');
     $("#txtDescripcionLarga").val('');
-    $(".fileinput-remove-button").click();    
+    $(".fileinput-remove-button").click();
     tblProductosProporcion.clear().draw();
     ListarProductos();
 }
 
 function RegistrarProductos() {
     var formData = new FormData();
+    var session = ObtenerSession();
     var $imagen = $("#avatar-1")[0].files;
     var nombre = $("#txtNombreProducto").val().trim();
     var descripcionCorta = $("#txtDescripcionCorta").val().trim();
@@ -100,7 +159,8 @@ function RegistrarProductos() {
         MensajeAlert(MODULO,"Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
     }
-
+    
+    formData.append('usuario', session.usuario);
     formData.append('nombreProducto', nombre);
     formData.append('descripcionCorta', descripcionCorta);
     formData.append('descripcionLarga', descripcionLarga);       
@@ -116,7 +176,15 @@ function RegistrarProductos() {
         contentType: false,
         processData: false,
         success: function (resultados) {
-            console.log("Petición terminada. Resultados" + resultados);
+            //console.log("Petición terminada. Resultados " + resultados);
+            if(resultados){
+                MensajeAlert(MODULO, "Se registro el producto");
+            }
+            else{
+                MensajeAlert(MODULO, "No se pudo registrar el producto");
+            }
+            Limpiar();
+            ListarProductos();
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(jqXhr); console.log(textStatus); console.log(errorThrown);

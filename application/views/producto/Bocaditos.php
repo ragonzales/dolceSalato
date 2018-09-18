@@ -132,7 +132,7 @@
                      <tr>
                         <th width="1%"></th>
                         <th class="text-nowrap">NOMBRE PRODUCTO</th>
-                        <th class="text-nowrap">ESTADO</th>
+                        <!-- <th class="text-nowrap">ESTADO</th> -->
                         <th class="text-nowrap">USUARIO REGISTRO</th>
                         <th class="text-nowrap">FECHA REGISTRO</th>
                         <th class="text-nowrap">USUARIO BAJA</th>

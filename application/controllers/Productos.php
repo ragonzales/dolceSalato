@@ -77,9 +77,10 @@ class Productos extends CI_Controller {
 		$nombreProducto = $this->input->post("nombreProducto");		
 		$descripcionCorta = $this->input->post("descripcionCorta");
 		$descripcionLarga = $this->input->post("descripcionLarga");
-		$listadoProporciones = $this->input->post("listadoProporciones");
+		$listadoProporciones = $this->input->post("listadoProporciones");		
+		$cargaImagen = $this->CargarLibreriaUpload($IdCategoria);
 
-		$cargaImagen = $this->CargarLibreriaUpload($IdCategoria);	
+		$cantidadProporciones = 0;
 
 		if ($cargaImagen == false)
 		{
@@ -89,14 +90,9 @@ class Productos extends CI_Controller {
 		{
 			$directorio = $this->ObtenerDirectorio($IdCategoria);
 			$IdProducto = $this->ProductoModel->RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $directorio);
-			if($listadoProporciones == null)
-			 	$cantidadProporciones = 0;
-			else
-			 	$cantidadProporciones= count($listadoProporciones);
-			
-			if ($cantidadProporciones > 0) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones);
-			echo json_encode(true);
-			
+			//if($listadoProporciones == null) $cantidadProporciones = 0;
+			if ($cantidadProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones);
+			echo json_encode(true);			
 		}
 	}
 
@@ -144,5 +140,21 @@ class Productos extends CI_Controller {
 			//echo json_encode(true);
 			return true;
 		}
+	}
+
+	public function ActualizarEstadoProducto()
+	{
+		$IdProducto = $this->input->post("IdProducto");
+		$estado = $this->input->post("estado");
+		$usuario = $this->input->post("usuario");
+		$resultado = $this->ProductoModel->ActualizarEstadoProducto($IdProducto,$estado,$usuario);
+		echo json_encode($resultado);
+	}
+
+	public function BuscarProducto()
+	{
+		$IdProducto = $this->input->post("IdProducto");
+		$resultado = $this->ProductoModel->BuscarProducto($IdProducto);
+		echo json_encode($resultado);
 	}
 }

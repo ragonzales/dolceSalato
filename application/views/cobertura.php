@@ -51,7 +51,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">EDITAR COBERTURA</h4>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
                 </div>
                 <div class="modal-body">                                
                     <input type="hidden" class="form-control" id="txtIdCoberturaEditar">
@@ -74,7 +73,7 @@
                             <div class="switcher switcher-success">
                                 <input type="checkbox" name="switcher_checkbox_5" id="switcher_checkbox_5"/>
                                 <label for="switcher_checkbox_5"></label>
-                            </div> 
+                            </div>
                         </div>
                     </div>
 

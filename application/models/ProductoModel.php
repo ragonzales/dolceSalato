@@ -6,10 +6,7 @@ class ProductoModel extends CI_Model
 {	
 	public function ListarProductos($idcategoria)
 	{	
-		$sql = "Select *";
-		$sql .= " From producto";
-		$sql .= " Where idcategoria = ?";
-		$query = $this->db->query($sql, array($idcategoria));
+		$query = $this->db->get_where('producto', array('idcategoria' => $idcategoria));
 		return $query->result();
 	}
 

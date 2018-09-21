@@ -31,12 +31,14 @@ class CoberturaModel extends CI_Model
 
 		if($cobertura['estado'] == '0'){
 			$this->db->set('activo', 0, FALSE);
-			$this->db->set('usuarioBaja', "'" . $cobertura['usuario'] . "'" , FALSE);			
+			$this->db->set('usuarioBaja', "'" . $cobertura['usuario'] . "'" , FALSE);	
 		 	$this->db->set('fechaBaja', 'NOW()', FALSE);
-		}
-		else{
+		}else {
 			$this->db->set('activo', 1, FALSE);
+			$this->db->set('usuarioBaja',"''", FALSE);
+			$this->db->set('fechaBaja',"NULL", FALSE);
 		}
+
 		$this->db->where('Idcobertura', $cobertura['IdCobertura']);
 		return $this->db->update('cobertura', $data);	
 	}

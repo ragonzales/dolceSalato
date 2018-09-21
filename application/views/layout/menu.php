@@ -1,5 +1,5 @@
 <div id="sidebar" class="sidebar">
-    <div data-scrollbar="true" data-height="100%">
+    <div data-scrollbar="true" data-height="100%" class="menuFondo" >
         <ul class="nav">
             <li class="nav-profile">
                 <a href="javascript:;" data-toggle="nav-profile">

@@ -10,6 +10,12 @@ class ProductoModel extends CI_Model
 		return $query->result();
 	}
 
+	public function BuscarProductoProporciones($IdProducto)
+	{	
+		$query = $this->db->get_where('proporcionproductos', array('IdProducto' => $IdProducto));
+		return $query->result();
+	}
+
 	public function ActualizarProducto($params){
 		$data = array(
 						'IdProducto' => $params['IdProducto'],
@@ -44,18 +50,18 @@ class ProductoModel extends CI_Model
 		return $this->db->insert_id();
 	}
 
-	public function RegistrarProporcionProducto($IdProducto, $listadoProporciones)
+	public function RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario)
 	{
 		foreach ($listadoProporciones as $key => $proporcion) {
-			$data = array(
-				'IdProducto'		=> $IdProducto,
-				'proporcion' 		=> $proporcion['descripcionNota'],
-				'precio' 			=> $proporcion['precio'],
-				'estado' 			=> 1
-				);
-			
-			$this->db->set('fecha_registro', 'NOW()', FALSE);
-			$this->db->insert('notaOrdenCompra', $data);
+			$data = array(						
+			 			'IdProducto'		=> $IdProducto,
+			 			'proporcion'		=> $proporcion->proporcion,
+			 			'precio' 			=> $proporcion->precio,					
+			 			'estado' 			=> 1,
+			 			);
+			$this->db->set('usuarioRegistro', "'" . $usuario . "'" , FALSE);
+			$this->db->set('fecharegistro', 'NOW()', FALSE);
+			$this->db->insert('proporcionproductos', $data);
 		}
 	}
 
@@ -67,6 +73,8 @@ class ProductoModel extends CI_Model
 			$this->db->set('fechaBaja', 'NOW()', FALSE);
 		}else {
 			$this->db->set('estado', 1, FALSE);
+			$this->db->set('usuarioBaja',"''", FALSE);
+			$this->db->set('fechaBaja',"NULL", FALSE);
 		}
 
 		$this->db->where('IdProducto', $IdProducto);

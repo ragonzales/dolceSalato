@@ -30,14 +30,20 @@
                   <div class="tab-content">
                     <div class="tab-pane fade active show" id="nav-pills-tab-1">
                         <div class="row">
-                            <div class="col-sm-4 text-center">
+                            <div class="col-sm-4 text-center" id="dvImagenCarga" style="display:block">
                                 <div class="kv-avatar">
                                     <div class="file-loading">
-                                    <input id="avatar-1" name="avatar-1" type="file" required>
+                                        <input id="avatar-1" name="avatar-1" type="file" required>
                                     </div>
                                 </div>
-                                <div class="kv-avatar-hint"><small>Archivo < 1500 KB</small></div>
+                                <div class="kv-avatar-hint"><small>Archivo</small></div>    <!--Archivo < 1500 KB-->
                             </div>
+
+                            <div class="col-sm-4 text-center" id="dvImagenCargada" style="display:none">                                
+                                <img src="#" class="img-fluid" alt="Producto" id="imgProducto">                                
+                            </div>
+
+
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -71,17 +77,30 @@
                             <div class="col-sm-6">                                
                                 <div class="col-sm-12">
                                     <div class="col-sm-4">
+                                        Proporción
+                                    </div>
+
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" placeholder="Ingrese la proporción" name="text" required id="txtProporcion">
-                                        <div class="col-md-12 tamano"></div>
                                     </div>
-                                    
+                                </div>
+
+                                <div class="col-md-12 tamano"></div>
+
+                                <div class="col-sm-12">
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" placeholder="Ingrese el precio" name="text" required id="txtPrecio" >
-                                        <div class="col-md-12 tamano"></div>
+                                        Precio
                                     </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" placeholder="Ingrese el precio" name="text" required id="txtPrecio" >                                        
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 tamano"></div>
+
+                                <div class="col-sm-12">
                                     <div class="col-sm-4">
-                                        <button class="btn bg-warning" style="color:white;" id="btnAgregarProporcion"><i class="fa fa-plus"> Agregar Proporción</i></button>                                
-                                        <div class="col-md-12 tamano"></div>
+                                        <button class="btn bg-dark" style="color:white;" id="btnAgregarProporcion"><i class="fa fa-plus"> Agregar Proporción</i></button>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +151,6 @@
                      <tr>
                         <th width="1%"></th>
                         <th class="text-nowrap">NOMBRE PRODUCTO</th>
-                        <!-- <th class="text-nowrap">ESTADO</th> -->
                         <th class="text-nowrap">USUARIO REGISTRO</th>
                         <th class="text-nowrap">FECHA REGISTRO</th>
                         <th class="text-nowrap">USUARIO BAJA</th>

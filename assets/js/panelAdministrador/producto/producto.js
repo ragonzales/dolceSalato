@@ -34,10 +34,10 @@ function ListarProductos() {
                         '<label class="switch">'+
                         '<input type="checkbox" class= "success" onchange="CambiarEstadoProducto(' + producto.idproducto + ',this)"' + checked + '/>' +
                         '<span class="slider round"></span>',
-                        '<center><button type="submit" class="btn btn-dark" onclick="BuscarProducto(' + producto.idproducto + ')">Editar</button></center>',
+                        '<center><button type="submit" onclick="BuscarProducto(' + producto.idproducto + ')" class="btn btn-dark"><i class="fa fa-search"></i>&nbsp;Editar</button></center>', 
                     ]).draw(false);
                 });
-            }          
+            }
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
@@ -47,8 +47,6 @@ function ListarProductos() {
 }
 
 function BuscarProducto(IdProducto) {
-    console.log(IdProducto);
-
     $.ajax({
         type: "POST",
         url: BASE_URL + 'Productos/BuscarProducto',
@@ -58,26 +56,58 @@ function BuscarProducto(IdProducto) {
         async: true,
         dataType: 'json',
         success: function (producto) {
-            console.log(producto);
             AsignarProducto(producto)
+            BuscarProductoProporciones(IdProducto);
         },
         error: function (jqXhr, textStatus, errorThrown) {
             console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
-            MensajeAlert(MODULO, 'Error al listar los productos. Detalle Técnico : ' + errorThrown);
+            MensajeAlert(MODULO, 'Error al buscar el producto. Detalle Técnico : ' + errorThrown);
         }
     });
 }
 
+function BuscarProductoProporciones(IdProducto) {
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + 'Productos/BuscarProductoProporciones',
+        data: {
+            "IdProducto": IdProducto
+        },
+        async: true,
+        dataType: 'json',
+        success: function (listadoPoporciones) {
+            console.log(listadoPoporciones);
+            AsignarListadoProporciones(listadoPoporciones);         
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
+            MensajeAlert(MODULO, 'Error al listar las proporciones del producto. Detalle Técnico : ' + errorThrown);
+        }
+    });
+}
+
+function AsignarListadoProporciones(listadoPoporciones) {    
+    if (listadoPoporciones != null) {
+        listadoPoporciones.forEach(function (producto) {
+            tblProductosProporcion.row.add([
+                producto.proporcion,
+                producto.precio,
+                '<center><button type="submit" class="btnEliminar btn btn-success">Eliminar</button></center>',
+            ]).draw(false);
+        });
+    }
+}
+
 function AsignarProducto(producto) {    
+    console.log(producto);
     $("#txtNombreProducto").val(producto.nombre);
     $("#txtDescripcionCorta").val(producto.descripcioncorta);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
-    //$("#txtNombreProducto").val(producto.);
+    $("#txtDescripcionLarga").val(producto.descripcionlarga);
+    $("#imgProducto").attr("src", BASE_URL + producto.rutafoto);
 }
 
 function CambiarEstadoProducto(IdProducto,element) {
-    console.log(IdProducto);
-    console.log(element);
     var session = ObtenerSession();
 
     $.ajax({
@@ -118,14 +148,14 @@ function AgregarProporcion() {
     tblProductosProporcion.row.add([
         proporcion,
         precio,
-        '<center><button type="submit" class="btnprueba btn btn-dark">Eliminar</button></center>',
+        '<center><button type="submit" class="btnEliminar btn btn-dark">Eliminar</button></center>',
     ]).draw(false);
 
     $("#txtProporcion").val('');
     $("#txtPrecio").val('');
 }
 
-$('#tblProductosProporcion').on("click", ".btnprueba", function () {
+$('#tblProductosProporcion').on("click", ".btnEliminar", function () {
     tblProductosProporcion.row($(this).parents('tr')).remove().draw(false);
 });
 
@@ -159,12 +189,13 @@ function RegistrarProductos() {
         MensajeAlert(MODULO,"Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
     }
+    var listado = JSON.stringify(RecorrerProporciones());
     
     formData.append('usuario', session.usuario);
     formData.append('nombreProducto', nombre);
     formData.append('descripcionCorta', descripcionCorta);
     formData.append('descripcionLarga', descripcionLarga);       
-    formData.append('listadoProporciones', RecorrerProporciones());
+    formData.append('listadoProporciones', listado);
     formData.append('IdCategoria', CATEGORIA);
     formData.append('foto', $imagen[0]);
 
@@ -176,7 +207,7 @@ function RegistrarProductos() {
         contentType: false,
         processData: false,
         success: function (resultados) {
-            //console.log("Petición terminada. Resultados " + resultados);
+            console.log("Petición terminada. Resultados " + resultados);
             if(resultados){
                 MensajeAlert(MODULO, "Se registro el producto");
             }
@@ -194,9 +225,13 @@ function RegistrarProductos() {
 }
 
 function RecorrerProporciones() {
-    var listaProductosTabla = new Array();
+    var listaProductosTabla = null;
+    var contador = 0;
     $("#tblProductosProporcion tbody tr").each(function (index) {
         var proporcion, precio;
+        if(contador==0){
+            listaProductosTabla = new Array();
+        }
         $(this).children("td").each(function (index2) {
             switch (index2) {
                 case 0:
@@ -207,9 +242,12 @@ function RecorrerProporciones() {
                     break;
             }
         })
-        var producto = null;
-        producto = ObjetoProductoProporcion(proporcion, precio);
-        listaProductosTabla.push(producto);
+        if (proporcion != 'No hay registros para los filtros buscados'){
+            var producto = null;
+            producto = ObjetoProductoProporcion(proporcion, precio);
+            listaProductosTabla.push(producto);
+        }
+        contador++;
     })
     return listaProductosTabla;
 }

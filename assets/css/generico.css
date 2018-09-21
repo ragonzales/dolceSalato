@@ -116,3 +116,28 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.menuFondo
+{
+  background: #000000;
+}
+.sidebar .nav>li.active>a, .sidebar .nav>li.active>a:focus, .sidebar .nav>li.active>a:hover {
+    color: #fff;
+    background: #000000;
+}
+
+.sidebar .nav>li.active>a, .sidebar .nav>li.active>a:focus, .sidebar .nav>li.active>a:hover {
+    color: #ffffff;
+    background: #000000;
+}
+.sidebar .nav>li.active>a, .sidebar .nav>li.active>a:focus, .sidebar .nav>li.active>a:hover {
+    color: #ffffff;
+    background: #8c6f45;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link, .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover, .nav-pills>li>a.active, .nav-pills>li>a.active:focus, .nav-pills>li>a.active:hover {
+    background: #cd9543;
+    color: #fff;
+}
+.nav>li>a {
+    color: #ffffff;
+    BACKGROUND: BLACK;
+}

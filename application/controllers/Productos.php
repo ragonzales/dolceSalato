@@ -77,22 +77,77 @@ class Productos extends CI_Controller {
 		$nombreProducto = $this->input->post("nombreProducto");		
 		$descripcionCorta = $this->input->post("descripcionCorta");
 		$descripcionLarga = $this->input->post("descripcionLarga");
-		$listadoProporciones = $this->input->post("listadoProporciones");		
-		$cargaImagen = $this->CargarLibreriaUpload($IdCategoria);
-
-		$cantidadProporciones = 0;
-
+		$listadoProporciones = json_decode ($this->input->post("listadoProporciones"));		
+		$cargaImagen = $this->CargarLibreriaUpload($IdCategoria,$nombreArchivo);
+		
 		if ($cargaImagen == false)
 		{
 			echo json_encode($error);
 		}
 		else
 		{
-			$directorio = $this->ObtenerDirectorio($IdCategoria);
+			$directorio = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
 			$IdProducto = $this->ProductoModel->RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $directorio);
-			//if($listadoProporciones == null) $cantidadProporciones = 0;
-			if ($cantidadProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones);
+			if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
 			echo json_encode(true);			
+		}
+	}
+
+	public function ActualizarEstadoProducto()
+	{
+		$IdProducto = $this->input->post("IdProducto");
+		$estado = $this->input->post("estado");
+		$usuario = $this->input->post("usuario");
+		$resultado = $this->ProductoModel->ActualizarEstadoProducto($IdProducto,$estado,$usuario);
+		echo json_encode($resultado);
+	}
+
+	public function BuscarProducto()
+	{
+		$IdProducto = $this->input->post("IdProducto");
+		$resultado = $this->ProductoModel->BuscarProducto($IdProducto);
+		echo json_encode($resultado);
+	}
+
+	public function BuscarProductoProporciones()
+	{
+		$IdProducto = $this->input->post("IdProducto");
+		$resultado = $this->ProductoModel->BuscarProductoProporciones($IdProducto);
+		echo json_encode($resultado);
+	}
+
+	public function CargarLibreriaUpload($IdCategoria,&$nombreArchivo)
+	{	
+		try 
+		{
+			$dir = $this->ObtenerDirectorio($IdCategoria);
+			$config['upload_path'] = $dir;
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size'] = 2048;		
+			$this->load->library('upload', $config);
+
+			if (!file_exists($dir)) 
+			{
+				error_reporting(E_ERROR);
+				mkdir($dir,0777);
+				chmod($dir, 0777);
+				error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+			}
+
+			if (!$this->upload->do_upload('foto')) 
+			{ 
+				$error = array('error' => $this->upload->display_errors());
+				return false;
+			}
+			else 
+			{
+				$data = $this->upload->data();
+				echo  json_encode($data);
+				$nombreArchivo = $data["file_name"];
+				return true;
+			}						
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 		}
 	}
 
@@ -116,45 +171,5 @@ class Productos extends CI_Controller {
 				break;
 		}
 		return $dir;
-	}
-
-	public function CargarLibreriaUpload($IdCategoria)
-	{
-		$dir = $this->ObtenerDirectorio($IdCategoria);
-		$config['upload_path'] = $dir;
-        $config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = 2048;		
-		$this->load->library('upload', $config);
-
-		if (!file_exists($dir)) {
-			error_reporting(E_ERROR);
-			mkdir($dir,0777);
-			chmod($dir, 0777);
-			error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-		}
-
-		if (!$this->upload->do_upload('foto')) { 
-            $error = array('error' => $this->upload->display_errors());
-			return false;
-        } else {
-			//echo json_encode(true);
-			return true;
-		}
-	}
-
-	public function ActualizarEstadoProducto()
-	{
-		$IdProducto = $this->input->post("IdProducto");
-		$estado = $this->input->post("estado");
-		$usuario = $this->input->post("usuario");
-		$resultado = $this->ProductoModel->ActualizarEstadoProducto($IdProducto,$estado,$usuario);
-		echo json_encode($resultado);
-	}
-
-	public function BuscarProducto()
-	{
-		$IdProducto = $this->input->post("IdProducto");
-		$resultado = $this->ProductoModel->BuscarProducto($IdProducto);
-		echo json_encode($resultado);
 	}
 }

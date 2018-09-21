@@ -16,19 +16,22 @@ class ProductoModel extends CI_Model
 		return $query->result();
 	}
 
-	public function ActualizarProducto($params){
+	public function ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto){
 		$data = array(
-						'IdProducto' => $params['IdProducto'],
-						'nombre' => $params['nombreProducto'],
-						'principioActivo' => $params['principioActivo'],
-						'unidad' => $params['unidadMedida'],
-						'importador' => $params['importador'],
-						'fabricante' => $params['fabricante'],
-						'usuario_modifica' => $params['usuario_modifica'],
-						'estado' => 1, 
-						);
-		$this->db->set('fecha_modifica', 'NOW()', FALSE);
-		$this->db->where('IdProducto', $params['IdProducto']);
+						'IdCategoria' 			=> $IdCategoria,
+						'nombre'	 			=> $nombreProducto,
+						'descripcionCorta' 		=> $descripcionCorta,
+						'descripcionLarga' 		=> $descripcionLarga,
+						'rutaFoto' 				=> $rutaFoto,
+					);
+		
+		if($rutaFoto !=null){
+			$this->db->set('rutaFoto', "'" . $rutaFoto . "'", FALSE);
+		}
+		$this->db->set('fechaRegistro', 'NOW()', FALSE);
+		$this->db->set('usuarioBaja', 'NULL', FALSE);
+		$this->db->set('fechaBaja', 'NULL', FALSE);
+		$this->db->where('IdProducto', $IdProducto);
 		return $this->db->update('producto', $data);
 	}
 
@@ -86,5 +89,11 @@ class ProductoModel extends CI_Model
 		$query = $this->db->get_where('producto', array('IdProducto' => $IdProducto));
 		return $query->row();
 	}
+
+	public function EliminarProporcionProducto($IdProducto)
+	{	
+		$query = $this->db->delete('proporcionproductos', array('IdProducto' => $IdProducto));
+	}
+	
 }
 ?>

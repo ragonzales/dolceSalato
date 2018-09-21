@@ -40,8 +40,6 @@
     width: 80% !important;
 }
 
-
-
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -140,4 +138,10 @@ input:checked + .slider:before {
 .nav>li>a {
     color: #ffffff;
     BACKGROUND: BLACK;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+    width: 300px;
 }

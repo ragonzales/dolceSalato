@@ -93,6 +93,40 @@ class Productos extends CI_Controller {
 		}
 	}
 
+	public function ModificarProductos()
+	{
+		$usuario = $this->input->post("usuario");
+		$IdProducto = $this->input->post("IdProducto");
+		$IdCategoria = $this->input->post("IdCategoria");
+		$nombreProducto = $this->input->post("nombreProducto");		
+		$descripcionCorta = $this->input->post("descripcionCorta");
+		$descripcionLarga = $this->input->post("descripcionLarga");
+		$listadoProporciones = json_decode ($this->input->post("listadoProporciones"));		
+		
+		if($this->input->post("foto") == null){
+			$cargaImagen = $this->CargarLibreriaUpload($IdCategoria,$nombreArchivo);
+			if ($cargaImagen == false)
+			{
+				echo json_encode($error);
+			}
+			else
+			{
+				$rutaFoto = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
+				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto);
+				$this->ProductoModel->EliminarProporcionProducto($IdProducto);
+				if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
+				echo json_encode(true);
+			}
+		}
+		else {
+			$rutaFoto = null;
+			$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto);
+			$this->ProductoModel->EliminarProporcionProducto($IdProducto);
+			if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
+			echo json_encode(true);
+		}
+	}
+
 	public function ActualizarEstadoProducto()
 	{
 		$IdProducto = $this->input->post("IdProducto");
@@ -139,7 +173,7 @@ class Productos extends CI_Controller {
 				$error = array('error' => $this->upload->display_errors());
 				return false;
 			}
-			else 
+			else
 			{
 				$data = $this->upload->data();
 				echo  json_encode($data);

@@ -30,7 +30,7 @@
                   <div class="tab-content">
                     <div class="tab-pane fade active show" id="nav-pills-tab-1">
                         <div class="row">
-                            <div class="col-sm-4 text-center" id="dvImagenCarga" style="display:block">
+                            <div class="col-sm-4 text-center">
                                 <div class="kv-avatar">
                                     <div class="file-loading">
                                         <input id="avatar-1" name="avatar-1" type="file" required>
@@ -38,11 +38,6 @@
                                 </div>
                                 <div class="kv-avatar-hint"><small>Archivo</small></div>    <!--Archivo < 1500 KB-->
                             </div>
-
-                            <div class="col-sm-4 text-center" id="dvImagenCargada" style="display:none">                                
-                                <img src="#" class="img-fluid" alt="Producto" id="imgProducto">                                
-                            </div>
-
 
                             <div class="col-sm-8">
                                 <div class="row">
@@ -165,3 +160,5 @@
       </div>
    </div>
 </div>
+
+<input type="hidden" id="txtIdProducto" value="">

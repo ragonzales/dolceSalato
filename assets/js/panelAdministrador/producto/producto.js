@@ -99,12 +99,20 @@ function AsignarListadoProporciones(listadoPoporciones) {
 }
 
 function AsignarProducto(producto) {    
-    console.log(producto);
+    // console.log(producto);
+    // console.log("RUTA BASE => " + BASE_URL);
+    // console.log("IMAGEN RUTA => " + producto.rutafoto);
+    // console.log("IMAGEN RUTA 2 => " + (producto.rutafoto).substring(1, producto.rutafoto.length));
+    $("#btnRegistrar").text("MODIFICAR PRODUCTO");
+    $("#btnRegistrar").removeClass("btn btn-warning").addClass("btn btn-success");
+   
+    
+    $("#txtIdProducto").val(producto.idproducto);
     $("#txtNombreProducto").val(producto.nombre);
     $("#txtDescripcionCorta").val(producto.descripcioncorta);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
-    $("#imgProducto").attr("src", BASE_URL + producto.rutafoto);
+    $("#imgProducto").attr("src", BASE_URL + (producto.rutafoto).substring(1, producto.rutafoto.length));
 }
 
 function CambiarEstadoProducto(IdProducto,element) {
@@ -121,7 +129,6 @@ function CambiarEstadoProducto(IdProducto,element) {
         async: true,
         dataType: 'json',
         success: function (respuesta) {
-            console.log(respuesta);
             ListarProductos();
             MensajeAlert("MÓDULO DE PRODUCTOS", "Se actualizó el estado del producto");         
         },
@@ -164,11 +171,78 @@ $("#btnLimpiar").click(function () {
 });
 
 $("#btnRegistrar").click(function () {
-    RegistrarProductos();
+    if ($(this).text() == "MODIFICAR PRODUCTO")
+    {
+        ModificarProductos();
+    }
+
+    if ($(this).text() == "REGISTRAR PRODUCTO") {
+        RegistrarProductos();
+    }    
 });
 
+function ModificarProductos() {
+    var formData = new FormData();
+    var session = ObtenerSession();
+    var $imagen = $("#avatar-1")[0].files;
+    var nombre = $("#txtNombreProducto").val().trim();
+    var descripcionCorta = $("#txtDescripcionCorta").val().trim();
+    var descripcionLarga = $("#txtDescripcionLarga").val().trim();
+    var IdProducto = $("#txtIdProducto").val().trim();
+
+    if (nombre == "" || descripcionCorta == "" || descripcionLarga == "") {
+        MensajeAlert(MODULO, "Debe de ingresar el nombre,descripcion corta,descripcion larga");
+        return;
+    }
+    
+    var listado = JSON.stringify(RecorrerProporciones());
+    formData.append('IdProducto', IdProducto);
+    formData.append('usuario', session.usuario);
+    formData.append('nombreProducto', nombre);
+    formData.append('descripcionCorta', descripcionCorta);
+    formData.append('descripcionLarga', descripcionLarga);
+    formData.append('listadoProporciones', listado);
+    formData.append('IdCategoria', CATEGORIA);
+
+    if ($imagen.length == 0){
+        formData.append('foto', null);
+    }
+    else
+    {
+        formData.append('foto', $imagen[0]);
+    }    
+
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + 'Productos/ModificarProductos',
+        data: formData,
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        success: function (resultados) {
+            console.log("Petición terminada. Resultados " + resultados);
+            if (resultados) {
+                MensajeAlert(MODULO, "Se modificó el producto");
+            }
+            else {
+                MensajeAlert(MODULO, "No se pudo modificar el producto");
+            }
+            Limpiar();
+            ListarProductos();
+        },
+        error: function (jqXhr, textStatus, errorThrown) {
+            console.log(jqXhr); console.log(textStatus); console.log(errorThrown);
+            MensajeAlert(MODULO, 'Error al registrar el producto. Detalle Técnico : ' + errorThrown);
+        }
+    });
+}
+
 function Limpiar() {
+    $("#btnRegistrar").text("REGISTRAR PRODUCTO");  
+    $("#btnRegistrar").removeClass("btn btn-success").addClass("btn btn-warning");
+
     $("#dvProporcionProductos").empty();
+    $("#txtIdProducto").val('');
     $("#txtNombreProducto").val('');
     $("#txtDescripcionCorta").val('');
     $("#txtDescripcionLarga").val('');
@@ -185,8 +259,13 @@ function RegistrarProductos() {
     var descripcionCorta = $("#txtDescripcionCorta").val().trim();
     var descripcionLarga = $("#txtDescripcionLarga").val().trim();
 
-    if ($imagen.length == 0 || nombre == "" || descripcionCorta == "" || descripcionLarga == ""){
-        MensajeAlert(MODULO,"Debe de ingresar el nombre,descripcion corta,descripcion larga");
+    if ($imagen.length == 0) {
+        MensajeAlert(MODULO, "Debe de ingresar la imagen del producto");
+        return;
+    }
+
+    if (nombre == "" || descripcionCorta == "" || descripcionLarga == "") {
+        MensajeAlert(MODULO, "Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
     }
     var listado = JSON.stringify(RecorrerProporciones());

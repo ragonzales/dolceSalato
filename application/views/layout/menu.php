@@ -26,13 +26,18 @@
                     <span>INICIO</span>
                 </a>
             </li>
+            <li class="<?=($this->uri->segment(1)==='Promociones')?'active':''?>">
+                <a href="<?php echo base_url();?>Promociones">
+                    <i class="fa fa-th-large"></i>
+                    <span>PANEL PROMOCIONES</span>
+                </a>
+            </li>
             <li class="<?=($this->uri->segment(1)==='Coberturas')?'active':''?>">
                 <a href="<?php echo base_url();?>Coberturas">
                     <i class="fa fa-th-large"></i>
                     <span>COBERTURAS</span>
                 </a>
             </li>
-
             <li class="<?=($this->uri->segment(1)==='Productos')?'has-sub active':'has-sub'?>">
                 <a href="javascript:;">
                     <b class="caret"></b>

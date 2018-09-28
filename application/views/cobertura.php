@@ -24,7 +24,7 @@
                             <input type="text" id="txtDistrito" class="form-control m-b-5" placeholder="Ingrese el Distrito" />
                         </div>
                         <div class="col-md-3">
-                            <button type="button" id="btnRegistrar" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Registrar</button>
+                            <button type="button" id="btnRegistrar" class="btn btn-warning"><i class="fa fa-plus"></i>&nbsp;Registrar</button>
                         </div>								
                     </div>						
                     <table id="tblCoberturas" class="table table-striped table-bordered">

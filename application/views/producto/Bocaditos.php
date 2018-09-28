@@ -42,29 +42,40 @@
                             <div class="col-sm-8">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="text">Nombre Producto<span class="kv-reqd">*</span></label>
-                                        <input type="text" class="form-control" id="txtNombreProducto" required>
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="text">Nombre Producto<span class="kv-reqd">*</span></label>
+                                            <input type="text" class="form-control" id="txtNombreProducto" placeholder="Ingrese el nombre Producto" required>
+                                        </div>
                                     </div>
                                     <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="pwd">Descripcion Corta<span class="kv-reqd">*</span></label>
-                                        <input type="text" class="form-control" id="txtDescripcionCorta" required>
-                                    </div>
+                                        <label for="pwd"></label></br>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="txtDestacado" />
+                                            <label class="form-check-label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Producto Destacado<label>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label for="lname">Descripcion</label>
-                                        <textarea class="form-control" rows="12" id="txtDescripcionLarga"></textarea>
+                                        <div class="form-group">
+                                            <label for="pwd">Descripcion Corta<span class="kv-reqd">*</span></label>
+                                            <input type="text" class="form-control" id="txtDescripcionCorta" placeholder="Ingrese la descripción del Producto" required>
+                                        </div>
                                     </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="lname">Descripcion</label>
+                                            <textarea class="form-control" rows="6" id="txtDescripcionLarga"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
+                        <div id="kv-avatar-errors-1" class="center-block" style="width:100%;display:none"></div>
                     </div>
 
                      <div class="tab-pane fade" id="nav-pills-tab-2">

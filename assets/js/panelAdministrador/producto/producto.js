@@ -99,20 +99,15 @@ function AsignarListadoProporciones(listadoPoporciones) {
 }
 
 function AsignarProducto(producto) {    
-    // console.log(producto);
-    // console.log("RUTA BASE => " + BASE_URL);
-    // console.log("IMAGEN RUTA => " + producto.rutafoto);
-    // console.log("IMAGEN RUTA 2 => " + (producto.rutafoto).substring(1, producto.rutafoto.length));
+    $("#txtDestacado").prop("checked",((producto.destacado == "0") ? false : true))
     $("#btnRegistrar").text("MODIFICAR PRODUCTO");
     $("#btnRegistrar").removeClass("btn btn-warning").addClass("btn btn-success");
-   
-    
     $("#txtIdProducto").val(producto.idproducto);
     $("#txtNombreProducto").val(producto.nombre);
     $("#txtDescripcionCorta").val(producto.descripcioncorta);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
-    $("#imgProducto").attr("src", BASE_URL + (producto.rutafoto).substring(1, producto.rutafoto.length));
+    if(producto.rutafoto != null) $("#imgProducto").attr("src", BASE_URL + (producto.rutafoto).substring(1, producto.rutafoto.length));
 }
 
 function CambiarEstadoProducto(IdProducto,element) {
@@ -189,6 +184,7 @@ function ModificarProductos() {
     var descripcionCorta = $("#txtDescripcionCorta").val().trim();
     var descripcionLarga = $("#txtDescripcionLarga").val().trim();
     var IdProducto = $("#txtIdProducto").val().trim();
+    var destacado = (($('#txtDestacado').prop('checked') == false) ? 0 : 1);
 
     if (nombre == "" || descripcionCorta == "" || descripcionLarga == "") {
         MensajeAlert(MODULO, "Debe de ingresar el nombre,descripcion corta,descripcion larga");
@@ -203,6 +199,7 @@ function ModificarProductos() {
     formData.append('descripcionLarga', descripcionLarga);
     formData.append('listadoProporciones', listado);
     formData.append('IdCategoria', CATEGORIA);
+    formData.append('destacado', destacado);
 
     if ($imagen.length == 0){
         formData.append('foto', null);
@@ -240,12 +237,12 @@ function ModificarProductos() {
 function Limpiar() {
     $("#btnRegistrar").text("REGISTRAR PRODUCTO");  
     $("#btnRegistrar").removeClass("btn btn-success").addClass("btn btn-warning");
-
     $("#dvProporcionProductos").empty();
     $("#txtIdProducto").val('');
     $("#txtNombreProducto").val('');
     $("#txtDescripcionCorta").val('');
     $("#txtDescripcionLarga").val('');
+    $("#txtDestacado").prop("checked",false);
     $(".fileinput-remove-button").click();
     tblProductosProporcion.clear().draw();
     ListarProductos();
@@ -258,6 +255,7 @@ function RegistrarProductos() {
     var nombre = $("#txtNombreProducto").val().trim();
     var descripcionCorta = $("#txtDescripcionCorta").val().trim();
     var descripcionLarga = $("#txtDescripcionLarga").val().trim();
+    var destacado = (($('#txtDestacado').prop('checked') == false) ? 0 : 1);
 
     if ($imagen.length == 0) {
         MensajeAlert(MODULO, "Debe de ingresar la imagen del producto");
@@ -276,6 +274,7 @@ function RegistrarProductos() {
     formData.append('descripcionLarga', descripcionLarga);       
     formData.append('listadoProporciones', listado);
     formData.append('IdCategoria', CATEGORIA);
+    formData.append('destacado', destacado);
     formData.append('foto', $imagen[0]);
 
     $.ajax({

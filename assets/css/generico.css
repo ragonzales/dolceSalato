@@ -39,8 +39,6 @@
 #mdialTamanio{
     width: 80% !important;
 }
-
-/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -48,11 +46,7 @@
   height: 34px;
   float:right;
 }
-
-/* Hide default HTML checkbox */
 .switch input {display:none;}
-
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -64,7 +58,6 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -76,18 +69,17 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input.default:checked + .slider {
   background-color: #444;
 }
 input.primary:checked + .slider {
-  background-color: #2196F3;
+  background-color: #cd9543;
 }
 input.success:checked + .slider {
-  background-color: #00acac;
+    background-color: #cd9543;
 }
 input.info:checked + .slider {
-  background-color: #3de0f5;
+  background-color: #cd9543;
 }
 input.warning:checked + .slider {
   background-color: #FFC107;
@@ -95,22 +87,17 @@ input.warning:checked + .slider {
 input.danger:checked + .slider {
   background-color: #f44336;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
@@ -122,7 +109,6 @@ input:checked + .slider:before {
     color: #fff;
     background: #000000;
 }
-
 .sidebar .nav>li.active>a, .sidebar .nav>li.active>a:focus, .sidebar .nav>li.active>a:hover {
     color: #ffffff;
     background: #000000;
@@ -139,9 +125,13 @@ input:checked + .slider:before {
     color: #ffffff;
     BACKGROUND: BLACK;
 }
-
 img {
     vertical-align: middle;
     border-style: none;
-    width: 300px;
+    width: 250px;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background: #cd9543!important;
+    border-color: #cd9543!important;
+    color: #fff;
 }

@@ -16,13 +16,13 @@ class ProductoModel extends CI_Model
 		return $query->result();
 	}
 
-	public function ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto){
+	public function ModificarProductos($IdProducto, $IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado){
 		$data = array(
 						'IdCategoria' 			=> $IdCategoria,
 						'nombre'	 			=> $nombreProducto,
 						'descripcionCorta' 		=> $descripcionCorta,
 						'descripcionLarga' 		=> $descripcionLarga,
-						'rutaFoto' 				=> $rutaFoto,
+						'destacado'				=> $destacado
 					);
 		
 		if($rutaFoto !=null){
@@ -35,7 +35,7 @@ class ProductoModel extends CI_Model
 		return $this->db->update('producto', $data);
 	}
 
-	public function RegistrarProductos($IdCategoria,$nombreProducto,$descripcionCorta,$descripcionLarga,$usuario,$rutaFoto){
+	public function RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado){
 		$data = array(
 						'IdCategoria' 			=> $IdCategoria,
 						'nombre'	 			=> $nombreProducto,
@@ -45,6 +45,12 @@ class ProductoModel extends CI_Model
 						'descripcionLarga' 		=> $descripcionLarga,
 						'rutaFoto' 				=> $rutaFoto,
 					);
+
+		if($destacado == '0'){
+			$this->db->set('destacado', 0, FALSE);
+		}else{
+			$this->db->set('destacado', 1, FALSE);
+		}
 
 		$this->db->set('fechaRegistro', 'NOW()', FALSE);		
 		$this->db->set('usuarioBaja', 'NULL', FALSE);
@@ -69,7 +75,13 @@ class ProductoModel extends CI_Model
 	}
 
 	public function ActualizarEstadoProducto($IdProducto,$estado,$usuario)
-	{
+	{	
+		if($destacado == '0'){
+			$this->db->set('destacado', 0, FALSE);
+		}else{
+			$this->db->set('destacado', 1, FALSE);
+		}
+
 		if($estado == '0'){
 			$this->db->set('estado', 0, FALSE);
 			$this->db->set('usuarioBaja',"'" . $usuario . "'", FALSE);

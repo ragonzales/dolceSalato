@@ -6,47 +6,51 @@ class PromocionModel extends CI_Model
 {	
 	public function ListarPromociones()
 	{	
-		$query = $this->db->get('cobertura');		
+		$query = $this->db->get('promocion');		
 		return $query->result();
 	}
 
-	public function RegistrarCobertura($cobertura){
+	public function BuscarPromocion($IdPromocion)
+	{	
+		$query = $this->db->get_where('promocion', array('Idpromocion' => $IdPromocion));
+		return $query->row();
+	}
+
+	public function RegistrarPromocion($titulo, $descripcionCorta, $mensaje, $usuario, $rutaFoto, $alineacion){
 		$data = array(
-					'distrito' 			=> $cobertura['distrito'],
-					'activo' 			=> 1,
-					'usuarioCrea' 		=> $cobertura['usuarioCrea'],
-				);
-		$this->db->set('fechaCrea', 'NOW()', FALSE);		
-		$this->db->set('usuarioBaja', 'NULL', FALSE);
-		$this->db->set('fechaBaja', 'NULL', FALSE);
-		$this->db->insert('cobertura', $data);
+						'titulo' 				=> $titulo,
+						'estado' 				=> 1,
+						'usuarioregistro'		=> $usuario,
+						'descripcionCorta' 		=> $descripcionCorta,
+						'mensaje' 				=> $mensaje,
+						'rutafoto' 				=> $rutaFoto,
+						'alineacion' 			=> $alineacion					
+					);
+
+		$this->db->set('fecharegistro', 'NOW()', FALSE);		
+		$this->db->set('usuariobaja', 'NULL', FALSE);
+		$this->db->set('fechabaja', 'NULL', FALSE);
+		$this->db->insert('promocion', $data);
 		return $this->db->insert_id();
 	}
 
-	public function ActualizarCobertura($cobertura)
-	{
+	public function ModificarPromocion($IdPromocion, $titulo, $descripcionCorta, $mensaje, $usuario, $rutaFoto, $alineacion){
 		$data = array(
-						'distrito' => $cobertura['cobertura'],
+						'titulo' 				=> $titulo,
+						'usuarioregistro'		=> $usuario,
+						'descripcionCorta' 		=> $descripcionCorta,
+						'mensaje' 				=> $mensaje,
+						'alineacion' 			=> $alineacion
 					);
-
-		if($cobertura['estado'] == '0'){
-			$this->db->set('activo', 0, FALSE);
-			$this->db->set('usuarioBaja', "'" . $cobertura['usuario'] . "'" , FALSE);	
-		 	$this->db->set('fechaBaja', 'NOW()', FALSE);
-		}else {
-			$this->db->set('activo', 1, FALSE);
-			$this->db->set('usuarioBaja',"''", FALSE);
-			$this->db->set('fechaBaja',"NULL", FALSE);
+		
+		if($rutaFoto !=null){
+			$this->db->set('rutaFoto', "'" . $rutaFoto . "'", FALSE);
 		}
-
-		$this->db->where('Idcobertura', $cobertura['IdCobertura']);
-		return $this->db->update('cobertura', $data);	
-	}
-
-	public function BuscarCobertura($IdCobertura)
-	{	
-		$query = $this->db->get_where('cobertura', array('IdCobertura' => $IdCobertura));
-		return $query->row();
+		$this->db->set('fechaRegistro', 'NOW()', FALSE);
+		$this->db->set('usuarioBaja', 'NULL', FALSE);
+		$this->db->set('fechaBaja', 'NULL', FALSE);
+		$this->db->where('IdPromocion', $IdPromocion);
+		return $this->db->update('promocion', $data);
 	}
 }
 ?>

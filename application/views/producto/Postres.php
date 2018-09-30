@@ -131,7 +131,7 @@
             <div class="form-group">
                <hr>
                <div class="text-right"> 
-                    <button type="submit" class="btn btn-warning" id="btnRegistrar">REGISTRAR PRODUCTO</button>
+                    <button type="submit" class="btn btn-warning" id="btnRegistrar">REGISTRAR</button>
                     <button type="submit" class="btn btn-dark" id="btnLimpiar">LIMPIAR</button>
                     <div class="col-md-12 tamano"></div>
                </div>               

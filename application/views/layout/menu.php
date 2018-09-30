@@ -26,8 +26,8 @@
                     <span>INICIO</span>
                 </a>
             </li>
-            <li class="<?=($this->uri->segment(1)==='Promociones')?'active':''?>">
-                <a href="<?php echo base_url();?>Promociones">
+            <li class="<?=($this->uri->segment(1)==='Promocion')?'active':''?>">
+                <a href="<?php echo base_url();?>Promocion">
                     <i class="fa fa-th-large"></i>
                     <span>PANEL PROMOCIONES</span>
                 </a>

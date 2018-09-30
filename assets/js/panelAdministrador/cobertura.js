@@ -30,7 +30,7 @@ function ListarCoberturas() {
                         ((item.fechacrea == null) ? '' : new Date(item.fechacrea).toLocaleString()),
                         ((item.usuariobaja == null) ? '' : item.usuariobaja),
                         ((item.fechabaja == null) ? '' : new Date(item.fechabaja).toLocaleString()),
-                        '<center><button type="submit" onclick="AbrirModalCobertura('+ item.idcobertura + ')" class="btn btn-dark"><i class="fa fa-search"></i>&nbsp;Editar</button></center>',
+                        '<center><button type="submit" onclick="AbrirModalCobertura('+ item.idcobertura + ')" class="btn btn-dark"><i class="fa fa-search"></i>&nbsp;&nbsp;Editar</button></center>',
                     ]).draw(false);
                 });
             }

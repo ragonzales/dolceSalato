@@ -39,7 +39,7 @@
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditos.js"></script>
 		<script type="text/javascript">
-			NOMBRE_IMAGEN = 'Bocaditos.png';
+			NOMBRE_IMAGEN = 'product/Bocaditos.png';
 		</script>
 	<?php }?>
 
@@ -48,7 +48,7 @@
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/combos.js"></script>
 		<script type="text/javascript">
-			NOMBRE_IMAGEN = 'Combos.png';
+			NOMBRE_IMAGEN = 'product/Combos.png';
 		</script>
 	<?php }?>
 
@@ -57,7 +57,7 @@
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckes.js"></script>
 		<script type="text/javascript">
-			NOMBRE_IMAGEN = 'Cupckes.png';
+			NOMBRE_IMAGEN = 'product/Cupckes.png';
 		</script>
 	<?php }?>
 
@@ -66,7 +66,7 @@
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/festivo.js"></script>
 		<script type="text/javascript">
-			NOMBRE_IMAGEN = 'Festivo.png';
+			NOMBRE_IMAGEN = 'product/Festivo.png';
 		</script>
 	<?php }?>
 
@@ -75,17 +75,25 @@
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/postres.js"></script>
 		<script type="text/javascript">
-			NOMBRE_IMAGEN = 'Postres.png';
+			NOMBRE_IMAGEN = 'product/Postres.png';
 		</script>
 	<?php }?>
 
-	<!--MÓDULO DE PRODUCTOS-->
-	<?php if($this->uri->segment(1)=='Productos'){?>
+	<!--PROMOCIÓN-->
+	<?php if($this->uri->segment(1)=='Promocion'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/promocion.js"></script>
+		<script type="text/javascript">
+			NOMBRE_IMAGEN = 'product/Postres.png';
+		</script>
+	<?php }?>
+
+	<!--MÓDULO DE PRODUCTOS Y PROMOCIÓN(BANNER)-->
+	<?php if($this->uri->segment(1)=='Productos' || $this->uri->segment(1)=='Promocion'){?>
 		<script type="text/javascript">
 			$("#avatar-1").fileinput({
-				overwriteInitial: true,
-				maxFileSize: 1500,
-				showClose: false,
+				overwriteInitial: false,
+				maxFileSize: 10500,
+				showClose: false,	
 				showCaption: false,
 				browseLabel: '',
 				removeLabel: '',
@@ -94,7 +102,7 @@
 				removeTitle: 'Cancel or reset changes',
 				elErrorContainer: '#kv-avatar-errors-1',
 				msgErrorClass: 'alert alert-block alert-danger',
-				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/product/' + NOMBRE_IMAGEN +'" alt="Producto" id="imgProducto">',
+				defaultPreviewContent: '<img src="' + BASE_URL +  'assets/img/' + NOMBRE_IMAGEN +'" alt="Producto" id="imgProducto">',
 				layoutTemplates: {main2: '{preview} {remove} {browse}'},
 				allowedFileExtensions: ["jpg", "png", "gif"]
 			});

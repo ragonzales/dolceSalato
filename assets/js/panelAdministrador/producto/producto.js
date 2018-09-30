@@ -47,6 +47,7 @@ function ListarProductos() {
 }
 
 function BuscarProducto(IdProducto) {
+    Limpiar();
     $.ajax({
         type: "POST",
         url: BASE_URL + 'Productos/BuscarProducto',
@@ -100,7 +101,7 @@ function AsignarListadoProporciones(listadoPoporciones) {
 
 function AsignarProducto(producto) {    
     $("#txtDestacado").prop("checked",((producto.destacado == "0") ? false : true))
-    $("#btnRegistrar").text("MODIFICAR PRODUCTO");
+    $("#btnRegistrar").text("MODIFICAR");
     $("#btnRegistrar").removeClass("btn btn-warning").addClass("btn btn-success");
     $("#txtIdProducto").val(producto.idproducto);
     $("#txtNombreProducto").val(producto.nombre);
@@ -166,12 +167,12 @@ $("#btnLimpiar").click(function () {
 });
 
 $("#btnRegistrar").click(function () {
-    if ($(this).text() == "MODIFICAR PRODUCTO")
+    if ($(this).text() == "MODIFICAR")
     {
         ModificarProductos();
     }
 
-    if ($(this).text() == "REGISTRAR PRODUCTO") {
+    if ($(this).text() == "REGISTRAR") {
         RegistrarProductos();
     }    
 });
@@ -235,7 +236,7 @@ function ModificarProductos() {
 }
 
 function Limpiar() {
-    $("#btnRegistrar").text("REGISTRAR PRODUCTO");  
+    $("#btnRegistrar").text("REGISTRAR");  
     $("#btnRegistrar").removeClass("btn btn-success").addClass("btn btn-warning");
     $("#dvProporcionProductos").empty();
     $("#txtIdProducto").val('');

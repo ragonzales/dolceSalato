@@ -5,7 +5,7 @@
         <li class="breadcrumb-item"><a href="javascript:;">Managed Tables</a></li>
         <li class="breadcrumb-item active">Responsive</li>
     </ol>
-    <h1 class="page-header">COBERTURAS</h1>			
+    <h1 class="page-header">COBERTURAS</h1>	
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-inverse">
@@ -70,7 +70,7 @@
                             <span>Estado  </span>
                         </div>
                         <div class="col-md-8">
-                            <div class="switcher switcher-success">
+                            <div class="switcher switcher-warning">
                                 <input type="checkbox" name="switcher_checkbox_5" id="switcher_checkbox_5"/>
                                 <label for="switcher_checkbox_5"></label>
                             </div>
@@ -125,13 +125,9 @@
                 </div>
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Cerrar</a>
-                    <a href="javascript:;" class="btn btn-success" id="btnActualizar">Actualizar Información</a>
+                    <a href="javascript:;" class="btn btn-dark" id="btnActualizar">Modificar</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
-		

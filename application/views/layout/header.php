@@ -27,11 +27,11 @@
 	<link href="<?php echo base_url();?>assets/css/generico.css" rel="stylesheet" />	
 </head>
 <body>
-	<div id="page-loader" class="fade"><span class="spinner"></span></div>
+	<div id="page-loader" class="fade"></div>
 	<div id="page-container" class="fade in page-sidebar-fixed page-header-fixed">
 		<div id="header" class="header navbar-default">
 			<div class="navbar-header">
-				<a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>Dolce</b> Salato</a>
+				<a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>PANEL DOLCE SALATO</b></a>
 				<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>

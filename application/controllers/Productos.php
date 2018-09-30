@@ -113,6 +113,12 @@ class Productos extends CI_Controller {
 			}
 			else
 			{
+				//ELIMINAR IMAGEN EXISTENTE
+				$producto = $this->ProductoModel->BuscarProducto($IdProducto);				
+				$archivoAnterior =  $producto->rutafoto;
+				$this->EliminarCarpeta($archivoAnterior);
+				
+				//ACTUALIZACION DE INFORMACION 
 				$rutaFoto = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
 				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado);
 				$this->ProductoModel->EliminarProporcionProducto($IdProducto);
@@ -153,8 +159,8 @@ class Productos extends CI_Controller {
 	}
 
 	public function CargarLibreriaUpload($IdCategoria,&$nombreArchivo)
-	{	
-		try 
+	{
+		try
 		{
 			$dir = $this->ObtenerDirectorio($IdCategoria);
 			$config['upload_path'] = $dir;
@@ -207,5 +213,18 @@ class Productos extends CI_Controller {
 				break;
 		}
 		return $dir;
+	}
+
+	public function EliminarCarpeta($archivo){
+		try 
+		{			 
+			$this->load->helper("file");
+			if (file_exists(unlink($archivo))){
+				delete_files(unlink($archivo));
+			}
+		} catch (Exception $e) 
+		{
+			echo json_encode($e->getMessage());
+		}
 	}
 }

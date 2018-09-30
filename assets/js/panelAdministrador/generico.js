@@ -130,7 +130,13 @@ function CargarDatatableConFiltros(nombreTabla) {
             sInfoFiltered: "(filtrado de _MAX_ registros)",
             sLoadingRecords: "Un momento por favor - cargando...",
             sSearch: "Filtro:",
-            sProcessing: "Cargando..."
+            sProcessing: "Cargando...",
+            // columnDefs: [
+            //     {
+            //         "targets": 0,
+            //         "className": "text-center",
+            //         "width": "250px"
+            //    }]
         },
         lengthMenu: [10, 20, 30, 40, 50]//,
     });  

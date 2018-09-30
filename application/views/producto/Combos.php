@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label for="lname">Descripcion</label>
+                                            <label for="lname">Detalle Producto</label>
                                             <textarea class="form-control" rows="6" id="txtDescripcionLarga"></textarea>
                                         </div>
                                     </div>

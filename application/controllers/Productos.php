@@ -106,6 +106,11 @@ class Productos extends CI_Controller {
 		$listadoProporciones = json_decode ($this->input->post("listadoProporciones"));		
 		
 		if($this->input->post("foto") == null){
+			//ELIMINAR IMAGEN EXISTENTE
+			$producto = $this->ProductoModel->BuscarProducto($IdProducto);				
+			$archivoAnterior =  $producto->rutafoto;
+			$this->EliminarCarpeta($archivoAnterior);
+			
 			$cargaImagen = $this->CargarLibreriaUpload($IdCategoria,$nombreArchivo);
 			if ($cargaImagen == false)
 			{
@@ -113,11 +118,6 @@ class Productos extends CI_Controller {
 			}
 			else
 			{
-				//ELIMINAR IMAGEN EXISTENTE
-				$producto = $this->ProductoModel->BuscarProducto($IdProducto);				
-				$archivoAnterior =  $producto->rutafoto;
-				$this->EliminarCarpeta($archivoAnterior);
-				
 				//ACTUALIZACION DE INFORMACION 
 				$rutaFoto = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
 				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado);

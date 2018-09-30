@@ -60,6 +60,11 @@ class Promocion extends CI_Controller {
 		*/
 
 		if($this->input->post("foto") == null){
+			$promocion = $this->PromocionModel->BuscarPromocion($IdPromocion);				
+			$archivoAnterior =  $promocion->rutafoto;
+			$this->EliminarCarpeta($archivoAnterior);
+			// echo json_encode('RUTA ARCHIVO ANTERIOR ' . $archivoAnterior);
+			
 			$cargaImagen = $this->CargarLibreriaUpload($nombreArchivo);
 			if ($cargaImagen == false)
 			{
@@ -67,13 +72,8 @@ class Promocion extends CI_Controller {
 			}
 			else
 			{
-				$promocion = $this->PromocionModel->BuscarPromocion($IdPromocion);				
-				$archivoAnterior =  $promocion->rutafoto;
-				$this->EliminarCarpeta($archivoAnterior);
-				// echo json_encode('RUTA ARCHIVO ANTERIOR ' . $archivoAnterior);
-				// echo json_encode('RUTA ARCHIVO NUEVA ' . $rutaCompleta);
-
 				$rutaCompleta = './Upload_Promociones/' . $nombreArchivo;
+				// echo json_encode('RUTA ARCHIVO NUEVA ' . $rutaCompleta);
 				$this->PromocionModel->ModificarPromocion($IdPromocion, $titulo, $descripcionCorta, $mensaje, $usuario, $rutaCompleta, $alineacion);
 				echo json_encode(true);
 			}

@@ -93,7 +93,7 @@ function AsignarListadoProporciones(listadoPoporciones) {
             tblProductosProporcion.row.add([
                 producto.proporcion,
                 producto.precio,
-                '<center><button type="submit" class="btnEliminar btn btn-success">Eliminar</button></center>',
+                '<center><button type="submit" class="btnEliminar btn btn-dark">Eliminar</button></center>',
             ]).draw(false);
         });
     }
@@ -102,7 +102,7 @@ function AsignarListadoProporciones(listadoPoporciones) {
 function AsignarProducto(producto) {    
     $("#txtDestacado").prop("checked",((producto.destacado == "0") ? false : true))
     $("#btnRegistrar").text("MODIFICAR");
-    $("#btnRegistrar").removeClass("btn btn-warning").addClass("btn btn-success");
+    $("#btnRegistrar").removeClass("btn btn-warning").addClass("btn btn-default");
     $("#txtIdProducto").val(producto.idproducto);
     $("#txtNombreProducto").val(producto.nombre);
     $("#txtDescripcionCorta").val(producto.descripcioncorta);
@@ -245,6 +245,8 @@ function Limpiar() {
     $("#txtDescripcionLarga").val('');
     $("#txtDestacado").prop("checked",false);
     $(".fileinput-remove-button").click();
+    $("#txtProporcion").val('');
+    $("#txtPrecio").val('');
     tblProductosProporcion.clear().draw();
     ListarProductos();
 }

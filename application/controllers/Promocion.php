@@ -140,4 +140,16 @@ class Promocion extends CI_Controller {
 			echo json_encode($e->getMessage());
 		}
 	}
+
+	public function ActualizarEstadoPromocion()
+	{
+		$IdPromocion = $this->input->post("IdPromocion");
+		$estado = $this->input->post("estado");
+		$usuario = $this->input->post("usuario");
+		$resultado = $this->PromocionModel->ActualizarEstadoPromocion($IdPromocion,$estado,$usuario);
+		echo json_encode($resultado);
+	}
+
+
+
 }

@@ -76,12 +76,6 @@ class ProductoModel extends CI_Model
 
 	public function ActualizarEstadoProducto($IdProducto,$estado,$usuario)
 	{	
-		if($destacado == '0'){
-			$this->db->set('destacado', 0, FALSE);
-		}else{
-			$this->db->set('destacado', 1, FALSE);
-		}
-
 		if($estado == '0'){
 			$this->db->set('estado', 0, FALSE);
 			$this->db->set('usuarioBaja',"'" . $usuario . "'", FALSE);

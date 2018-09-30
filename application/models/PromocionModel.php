@@ -52,5 +52,21 @@ class PromocionModel extends CI_Model
 		$this->db->where('IdPromocion', $IdPromocion);
 		return $this->db->update('promocion', $data);
 	}
+
+	public function ActualizarEstadoPromocion($IdPromocion,$estado,$usuario)
+	{	
+		if($estado == '0'){
+			$this->db->set('estado', 0, FALSE);
+			$this->db->set('usuarioBaja',"'" . $usuario . "'", FALSE);
+			$this->db->set('fechaBaja', 'NOW()', FALSE);
+		}else {
+			$this->db->set('estado', 1, FALSE);
+			$this->db->set('usuarioBaja',"''", FALSE);
+			$this->db->set('fechaBaja',"NULL", FALSE);
+		}
+
+		$this->db->where('IdPromocion', $IdPromocion);
+		return $this->db->update('promocion');	
+	}
 }
 ?>

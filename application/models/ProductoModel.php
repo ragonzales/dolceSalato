@@ -16,13 +16,14 @@ class ProductoModel extends CI_Model
 		return $query->result();
 	}
 
-	public function ModificarProductos($IdProducto, $IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado){
+	public function ModificarProductos($IdProducto, $IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado, $descuento){
 		$data = array(
 						'IdCategoria' 			=> $IdCategoria,
 						'nombre'	 			=> $nombreProducto,
 						'descripcionCorta' 		=> $descripcionCorta,
 						'descripcionLarga' 		=> $descripcionLarga,
-						'destacado'				=> $destacado
+						'destacado'				=> $destacado,
+						'descuento' 			=> $descuento
 					);
 		
 		if($rutaFoto !=null){
@@ -35,7 +36,7 @@ class ProductoModel extends CI_Model
 		return $this->db->update('producto', $data);
 	}
 
-	public function RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado){
+	public function RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado, $descuento){
 		$data = array(
 						'IdCategoria' 			=> $IdCategoria,
 						'nombre'	 			=> $nombreProducto,
@@ -44,6 +45,7 @@ class ProductoModel extends CI_Model
 						'descripcionCorta' 		=> $descripcionCorta,
 						'descripcionLarga' 		=> $descripcionLarga,
 						'rutaFoto' 				=> $rutaFoto,
+						'descuento' 			=> $descuento
 					);
 
 		if($destacado == '0'){

@@ -78,6 +78,7 @@ class Productos extends CI_Controller {
 		$descripcionCorta = $this->input->post("descripcionCorta");
 		$descripcionLarga = $this->input->post("descripcionLarga");
 		$destacado = $this->input->post("destacado");
+		$descuento = $this->input->post("descuento");
 		$listadoProporciones = json_decode ($this->input->post("listadoProporciones"));		
 		$cargaImagen = $this->CargarLibreriaUpload($IdCategoria,$nombreArchivo);
 		
@@ -88,7 +89,7 @@ class Productos extends CI_Controller {
 		else
 		{
 			$directorio = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
-			$IdProducto = $this->ProductoModel->RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $directorio, $destacado);
+			$IdProducto = $this->ProductoModel->RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $directorio, $destacado, $descuento);
 			if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
 			echo json_encode(true);			
 		}
@@ -103,6 +104,7 @@ class Productos extends CI_Controller {
 		$descripcionCorta = $this->input->post("descripcionCorta");
 		$descripcionLarga = $this->input->post("descripcionLarga");
 		$destacado = $this->input->post("destacado");
+		$descuento = $this->input->post("descuento");
 		$listadoProporciones = json_decode ($this->input->post("listadoProporciones"));		
 		
 		if($this->input->post("foto") == null){
@@ -120,7 +122,7 @@ class Productos extends CI_Controller {
 			{
 				//ACTUALIZACION DE INFORMACION 
 				$rutaFoto = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
-				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado);
+				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado, $descuento);
 				$this->ProductoModel->EliminarProporcionProducto($IdProducto);
 				if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
 				echo json_encode(true);
@@ -128,7 +130,7 @@ class Productos extends CI_Controller {
 		}
 		else {
 			$rutaFoto = null;
-			$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado);
+			$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado, $descuento);
 			$this->ProductoModel->EliminarProporcionProducto($IdProducto);
 			if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
 			echo json_encode(true);

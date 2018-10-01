@@ -106,7 +106,7 @@ function AsignarProducto(producto) {
     $("#txtIdProducto").val(producto.idproducto);
     $("#txtNombreProducto").val(producto.nombre);
     $("#txtDescripcionCorta").val(producto.descripcioncorta);
-    $("#txtDescripcionLarga").val(producto.descripcionlarga);
+    $("#txtDescuento").val(producto.descuento);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
     if(producto.rutafoto != null) $("#imgProducto").attr("src", BASE_URL + (producto.rutafoto).substring(1, producto.rutafoto.length));
 }
@@ -185,6 +185,7 @@ function ModificarProductos() {
     var descripcionCorta = $("#txtDescripcionCorta").val().trim();
     var descripcionLarga = $("#txtDescripcionLarga").val().trim();
     var IdProducto = $("#txtIdProducto").val().trim();
+    var descuento = $("#txtDescuento").val().trim();
     var destacado = (($('#txtDestacado').prop('checked') == false) ? 0 : 1);
 
     if (nombre == "" || descripcionCorta == "" || descripcionLarga == "") {
@@ -201,6 +202,7 @@ function ModificarProductos() {
     formData.append('listadoProporciones', listado);
     formData.append('IdCategoria', CATEGORIA);
     formData.append('destacado', destacado);
+    formData.append('descuento', descuento);
 
     if ($imagen.length == 0){
         formData.append('foto', null);
@@ -247,6 +249,7 @@ function Limpiar() {
     $(".fileinput-remove-button").click();
     $("#txtProporcion").val('');
     $("#txtPrecio").val('');
+    $("#txtDescuento").val('');
     tblProductosProporcion.clear().draw();
     ListarProductos();
 }
@@ -259,6 +262,7 @@ function RegistrarProductos() {
     var descripcionCorta = $("#txtDescripcionCorta").val().trim();
     var descripcionLarga = $("#txtDescripcionLarga").val().trim();
     var destacado = (($('#txtDestacado').prop('checked') == false) ? 0 : 1);
+    var descuento = $("#txtDescuento").val().trim();
 
     if ($imagen.length == 0) {
         MensajeAlert(MODULO, "Debe de ingresar la imagen del producto");
@@ -278,6 +282,7 @@ function RegistrarProductos() {
     formData.append('listadoProporciones', listado);
     formData.append('IdCategoria', CATEGORIA);
     formData.append('destacado', destacado);
+    formData.append('descuento', descuento);
     formData.append('foto', $imagen[0]);
 
     $.ajax({

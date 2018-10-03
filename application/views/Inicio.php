@@ -4,13 +4,14 @@
     </ol>
     <h1 class="page-header">INICIO</h1>
 
+    <!--
     <div class="row">			    
         <div class="col-lg-12">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title">INICIO</h4>
                 </div>
-                <div class="panel-body">						
+                <div class="panel-body">dd
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
                             <div class="widget widget-stats bg-gradient-teal">
@@ -69,4 +70,5 @@
             </div>
         </div>
     </div>
+    -->
 </div>

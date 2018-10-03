@@ -32,6 +32,9 @@
 	<!--COBERTURAS-->
 	<?php if($this->uri->segment(1)=='Coberturas'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/cobertura.js"></script>
+		<script type="text/javascript">
+			console.log("asdsad");
+		</script>
 	<?php }?>
 
 	<!--BOCADITOS-->

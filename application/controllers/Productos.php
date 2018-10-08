@@ -122,6 +122,8 @@ class Productos extends CI_Controller {
 			{
 				//ACTUALIZACION DE INFORMACION 
 				$rutaFoto = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
+				$rutaFoto = base_url() . substr($rutaFoto, 1);
+
 				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado, $descuento);
 				$this->ProductoModel->EliminarProporcionProducto($IdProducto);
 				if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
@@ -217,12 +219,19 @@ class Productos extends CI_Controller {
 		return $dir;
 	}
 
-	public function EliminarCarpeta($archivo){
+	public function EliminarCarpeta($archivo)
+	{
 		try 
-		{			 
+		{	
+			$RutaArchivo = base_url() . substr($archivo, 1) ;
 			$this->load->helper("file");
+			/*
 			if (file_exists(unlink($archivo))){
 				delete_files(unlink($archivo));
+			}
+			*/
+			if (file_exists($RutaArchivo)){
+				delete_files($RutaArchivo);
 			}
 		} catch (Exception $e) 
 		{

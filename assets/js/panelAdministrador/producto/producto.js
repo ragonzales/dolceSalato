@@ -108,7 +108,7 @@ function AsignarProducto(producto) {
     $("#txtDescripcionCorta").val(producto.descripcioncorta);
     $("#txtDescuento").val(producto.descuento);
     $("#txtDescripcionLarga").val(producto.descripcionlarga);
-    if(producto.rutafoto != null) $("#imgProducto").attr("src", BASE_URL + (producto.rutafoto).substring(1, producto.rutafoto.length));
+    if(producto.rutafoto != null) $("#imgProducto").attr("src", (producto.rutafoto));   //.substring(1, producto.rutafoto.length
 }
 
 function CambiarEstadoProducto(IdProducto,element) {

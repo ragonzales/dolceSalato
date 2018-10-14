@@ -41,19 +41,19 @@
 
                             <div class="col-sm-8">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="text">Nombre Producto<span class="kv-reqd">*</span></label>
                                             <input type="text" class="form-control" id="txtNombreProducto" placeholder="Ingrese el nombre Producto" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="text">Descuento</label>
-                                            <input type="text" class="form-control" id="txtDescuento" placeholder="Ingrese el % de Descuento">
+                                            <input type="text" class="form-control" id="txtDescuento" placeholder="Ingrese el Descuento">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <label for="pwd"></label></br>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="txtDestacado" />
@@ -139,7 +139,7 @@
             </div>
             <div class="form-group">
                <hr>
-               <div class="text-right"> 
+               <div class="text-right" style="margin-right: 20px;">
                     <button type="submit" class="btn btn-warning" id="btnRegistrar">REGISTRAR</button>
                     <button type="submit" class="btn btn-dark" id="btnLimpiar">LIMPIAR</button>
                     <div class="col-md-12 tamano"></div>
@@ -166,8 +166,8 @@
                      <tr>
                         <th width="1%"></th>
                         <th class="text-nowrap">NOMBRE PRODUCTO</th>
-                        <th class="text-nowrap">USUARIO REGISTRO</th>
-                        <th class="text-nowrap">FECHA REGISTRO</th>
+                        <th class="text-nowrap">USUARIO</th>
+                        <th class="text-nowrap">FECHA</th>
                         <th class="text-nowrap">USUARIO BAJA</th>
                         <th class="text-nowrap">FECHA BAJA</th>
                         <th class="text-nowrap"></th>

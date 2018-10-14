@@ -72,7 +72,7 @@ function AsignarPromocion(promocion) {
     $("#txtDescripcionCorta").val(promocion.descripcioncorta);
     $("#txtMensaje").val(promocion.mensaje);
     $("#txtAlineacion").val(promocion.alineacion);
-    if(promocion.rutafoto != null) $("#imgProducto").attr("src", BASE_URL + (promocion.rutafoto).substring(1, promocion.rutafoto.length));
+    if(promocion.rutafoto != null) $("#imgProducto").attr("src", promocion.rutafoto);
 }
 
 function CambiarEstadoPromocion(IdPromocion,element) {

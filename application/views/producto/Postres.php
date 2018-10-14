@@ -130,7 +130,7 @@
             </div>
             <div class="form-group">
                <hr>
-               <div class="text-right"> 
+               <div class="text-right" style="margin-right: 20px;">
                     <button type="submit" class="btn btn-warning" id="btnRegistrar">REGISTRAR</button>
                     <button type="submit" class="btn btn-dark" id="btnLimpiar">LIMPIAR</button>
                     <div class="col-md-12 tamano"></div>

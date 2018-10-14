@@ -39,6 +39,7 @@ class Promocion extends CI_Controller {
 		else
 		{
 			$rutaCompleta = './Upload_Promociones/' . $nombreArchivo;
+			$rutaCompleta = base_url() . substr($rutaCompleta, 2);
 			$IdProducto = $this->PromocionModel->RegistrarPromocion($titulo, $descripcionCorta, $mensaje, $usuario, $rutaCompleta, $alineacion);
 			echo json_encode(true);
 		}
@@ -73,6 +74,8 @@ class Promocion extends CI_Controller {
 			else
 			{
 				$rutaCompleta = './Upload_Promociones/' . $nombreArchivo;
+				$rutaCompleta = base_url() . substr($rutaCompleta, 2);
+
 				// echo json_encode('RUTA ARCHIVO NUEVA ' . $rutaCompleta);
 				$this->PromocionModel->ModificarPromocion($IdPromocion, $titulo, $descripcionCorta, $mensaje, $usuario, $rutaCompleta, $alineacion);
 				echo json_encode(true);
@@ -94,7 +97,7 @@ class Promocion extends CI_Controller {
 	}
 
 	public function CargarLibreriaUpload(&$nombreArchivo)
-	{	
+	{
 		try
 		{
 			$dir = './Upload_Promociones/';
@@ -103,7 +106,7 @@ class Promocion extends CI_Controller {
 			$config['max_size'] = 2048;		
 			$this->load->library('upload', $config);
 
-			if (!file_exists($dir))
+			if (!file_exists($dir)) 
 			{
 				error_reporting(E_ERROR);
 				mkdir($dir,0777);
@@ -119,21 +122,29 @@ class Promocion extends CI_Controller {
 			else
 			{
 				$data = $this->upload->data();
-				//echo  json_encode($data);
+				echo  json_encode($data);
 				$nombreArchivo = $data["file_name"];
 				return true;
 			}						
 		} catch (Exception $e) {
-			echo json_encode ('Excepción capturada: ',  $e->getMessage(), "\n");
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 		}
 	}
 
-	public function EliminarCarpeta($archivo){
+
+	public function EliminarCarpeta($archivo)
+	{
 		try 
-		{			 
+		{	
+			$RutaArchivo = base_url() . substr($archivo, 1) ;
 			$this->load->helper("file");
+			/*
 			if (file_exists(unlink($archivo))){
 				delete_files(unlink($archivo));
+			}
+			*/
+			if (file_exists($RutaArchivo)){
+				delete_files($RutaArchivo);
 			}
 		} catch (Exception $e) 
 		{

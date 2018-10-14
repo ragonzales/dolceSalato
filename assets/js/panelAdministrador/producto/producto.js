@@ -188,7 +188,9 @@ function ModificarProductos() {
     var descuento = $("#txtDescuento").val().trim();
     var destacado = (($('#txtDestacado').prop('checked') == false) ? 0 : 1);
 
-    if (nombre == "" || descripcionCorta == "" || descripcionLarga == "") {
+    console.log(destacado);    
+
+    if (nombre == "") {
         MensajeAlert(MODULO, "Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
     }
@@ -269,12 +271,12 @@ function RegistrarProductos() {
         return;
     }
 
-    if (nombre == "" || descripcionCorta == "" || descripcionLarga == "") {
+    if (nombre == "") {
         MensajeAlert(MODULO, "Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
     }
-    var listado = JSON.stringify(RecorrerProporciones());
     
+    var listado = JSON.stringify(RecorrerProporciones());    
     formData.append('usuario', session.usuario);
     formData.append('nombreProducto', nombre);
     formData.append('descripcionCorta', descripcionCorta);

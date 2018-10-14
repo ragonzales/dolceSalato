@@ -22,13 +22,20 @@ class ProductoModel extends CI_Model
 						'nombre'	 			=> $nombreProducto,
 						'descripcionCorta' 		=> $descripcionCorta,
 						'descripcionLarga' 		=> $descripcionLarga,
-						'destacado'				=> $destacado,
-						'descuento' 			=> $descuento
+						'descuento' 			=> $descuento,
+						'usuarioCrea' 			=> $usuario
 					);
 		
 		if($rutaFoto !=null){
 			$this->db->set('rutaFoto', "'" . $rutaFoto . "'", FALSE);
 		}
+
+		if($destacado == '0'){
+			$this->db->set('destacado', 0, FALSE);
+		}else{
+			$this->db->set('destacado', 1, FALSE);
+		}
+
 		$this->db->set('fechaRegistro', 'NOW()', FALSE);
 		$this->db->set('usuarioBaja', 'NULL', FALSE);
 		$this->db->set('fechaBaja', 'NULL', FALSE);

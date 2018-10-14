@@ -89,6 +89,7 @@ class Productos extends CI_Controller {
 		else
 		{
 			$directorio = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
+			$directorio = base_url() . substr($directorio, 2);
 			$IdProducto = $this->ProductoModel->RegistrarProductos($IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $directorio, $destacado, $descuento);
 			if ($listadoProporciones != null) $this->ProductoModel->RegistrarProporcionProducto($IdProducto, $listadoProporciones,$usuario);
 			echo json_encode(true);			
@@ -122,7 +123,7 @@ class Productos extends CI_Controller {
 			{
 				//ACTUALIZACION DE INFORMACION 
 				$rutaFoto = $this->ObtenerDirectorio($IdCategoria) . $nombreArchivo;
-				$rutaFoto = base_url() . substr($rutaFoto, 1);
+				$rutaFoto = base_url() . substr($rutaFoto, 2);
 
 				$this->ProductoModel->ModificarProductos($IdProducto,$IdCategoria, $nombreProducto, $descripcionCorta, $descripcionLarga, $usuario, $rutaFoto, $destacado, $descuento);
 				$this->ProductoModel->EliminarProporcionProducto($IdProducto);

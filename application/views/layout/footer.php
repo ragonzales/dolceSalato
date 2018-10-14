@@ -95,7 +95,7 @@
 		<script type="text/javascript">
 			$("#avatar-1").fileinput({
 				overwriteInitial: false,
-				maxFileSize: 10500,
+				maxFileSize: 2048,
 				showClose: false,	
 				showCaption: false,
 				browseLabel: '',

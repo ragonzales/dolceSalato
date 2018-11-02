@@ -14,3 +14,7 @@ ALTER TABLE dolcesalato.cobertura AUTO_INCREMENT = 1;
 ALTER TABLE dolcesalato.producto AUTO_INCREMENT = 1;
 ALTER TABLE dolcesalato.promocion AUTO_INCREMENT = 1;
 ALTER TABLE dolcesalato.proporcionproductos AUTO_INCREMENT = 1;
+
+/*
+	dir /b > lista.txt   //exportado de nombre de carpetas
+*/

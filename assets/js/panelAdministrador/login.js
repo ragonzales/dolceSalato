@@ -31,7 +31,7 @@ function Logearse(usuario,contrasena){
         url: BASE_URL + 'Login/BuscarUsuario',
         data: {
               "usuario"  : usuario ,
-              "contrasena" : contrasena , 
+              "contrasena" : contrasena
         },
         async:true,
         dataType: 'json',

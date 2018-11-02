@@ -16,7 +16,12 @@ class Login extends CI_Controller {
     
     public function BuscarUsuario(){
         $usuario = $this->input->post("usuario");
-        $contrasena = $this->input->post("contrasena");
+		$contrasena = $this->input->post("contrasena");
+		//echo json_encode('Ingreso BuscarUsuario');
+
+		// echo json_encode('usuario => ' + $usuario);
+		// echo json_encode('contrasena => ' + $contrasena);
+
 		$resultado = $this->LoginModel->BuscarUsuario($usuario,$contrasena);
 
 		if ($resultado == false)

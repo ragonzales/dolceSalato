@@ -77,7 +77,6 @@ function BuscarProductoProporciones(IdProducto) {
         async: true,
         dataType: 'json',
         success: function (listadoPoporciones) {
-            console.log(listadoPoporciones);
             AsignarListadoProporciones(listadoPoporciones);         
         },
         error: function (jqXhr, textStatus, errorThrown) {
@@ -188,8 +187,6 @@ function ModificarProductos() {
     var descuento = $("#txtDescuento").val().trim();
     var destacado = (($('#txtDestacado').prop('checked') == false) ? 0 : 1);
 
-    console.log(destacado);    
-
     if (nombre == "") {
         MensajeAlert(MODULO, "Debe de ingresar el nombre,descripcion corta,descripcion larga");
         return;
@@ -222,7 +219,6 @@ function ModificarProductos() {
         contentType: false,
         processData: false,
         success: function (resultados) {
-            console.log("Petición terminada. Resultados " + resultados);
             if (resultados) {
                 MensajeAlert(MODULO, "Se modificó el producto");
             }
@@ -295,7 +291,6 @@ function RegistrarProductos() {
         contentType: false,
         processData: false,
         success: function (resultados) {
-            console.log("Petición terminada. Resultados " + resultados);
             if(resultados){
                 MensajeAlert(MODULO, "Se registro el producto");
             }

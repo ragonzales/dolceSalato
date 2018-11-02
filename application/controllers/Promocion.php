@@ -100,7 +100,7 @@ class Promocion extends CI_Controller {
 	{
 		try
 		{
-			$dir = './Upload_Promociones/';
+			$dir = './Upload_Banner/';
 			$config['upload_path'] = $dir;
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size'] = 2048;		

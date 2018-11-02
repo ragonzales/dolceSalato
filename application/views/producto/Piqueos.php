@@ -2,14 +2,14 @@
    <ol class="breadcrumb pull-right">
       <li class="breadcrumb-item"><a href="<?php echo base_url();?>Inicio">INICIO</a></li>
       <li class="breadcrumb-item"><a href="#">PRODUCTOS</a></li>
-      <li class="breadcrumb-item active"><a href="<?php echo base_url();?>Productos/Postres">COMBOS</a></li>
+      <li class="breadcrumb-item active"><a href="<?php echo base_url();?>Productos/Piqueos">PIQUEOS</a></li>
    </ol>
-   <h1 class="page-header">COMBOS</h1>
+   <h1 class="page-header">PIQUEOS</h1>
    <div class="row">
       <div class="col-lg-12">
          <div class="panel panel-inverse">
             <div class="panel-heading">
-               <h4 class="panel-title">REGISTRAR COMBOS</h4>
+               <h4 class="panel-title">REGISTRAR PIQUEOS</h4>
             </div>
             <div class="panel-body">
                <div class="col-lg-12">
@@ -47,11 +47,17 @@
                                             <input type="text" class="form-control" id="txtNombreProducto" placeholder="Ingrese el nombre Producto" required>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="text">Descuento</label>
+                                            <input type="text" class="form-control" id="txtDescuento" placeholder="Ingrese el Descuento">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <label for="pwd"></label></br>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" id="txtDestacado" />
-                                            <label class="form-check-label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Producto Destacado<label>
+                                            <label class="form-check-label" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Producto Popular<label>
                                         </div>
                                     </div>
                                 </div>
@@ -109,6 +115,9 @@
                                         <button class="btn bg-dark" style="color:white;" id="btnAgregarProporcion"><i class="fa fa-plus"> Agregar Proporción</i></button>
                                     </div>
                                 </div>
+                                <div class="col-md-12 tamano"></div>
+                                <div class="col-md-12 tamano"></div>
+                                <div class="col-md-12 tamano"></div>
                             </div>
 
                             <div class="col-sm-6">
@@ -149,7 +158,7 @@
                   <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                   <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                </div>
-               <h4 class="panel-title">LISTADO DE COMBOS</h4>
+               <h4 class="panel-title">LISTADO DE BOCADITOS</h4>
             </div>
             <div class="panel-body">
                 <table id="tblProductos" class="table table-striped table-bordered">
@@ -157,8 +166,8 @@
                      <tr>
                         <th width="1%"></th>
                         <th class="text-nowrap">NOMBRE PRODUCTO</th>
-                        <th class="text-nowrap">USUARIO REGISTRO</th>
-                        <th class="text-nowrap">FECHA REGISTRO</th>
+                        <th class="text-nowrap">USUARIO</th>
+                        <th class="text-nowrap">FECHA</th>
                         <th class="text-nowrap">USUARIO BAJA</th>
                         <th class="text-nowrap">FECHA BAJA</th>
                         <th class="text-nowrap"></th>

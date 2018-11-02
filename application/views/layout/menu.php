@@ -45,11 +45,16 @@
                     <span>CATEGORIA</span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="<?=($this->uri->segment(2)==='Bocaditos')?'active':''?>"><a href="<?php echo base_url();?>Productos/Bocaditos">BOCADITOS</a></li>
-                    <li class="<?=($this->uri->segment(2)==='Combos')?'active':''?>"><a href="<?php echo base_url();?>Productos/Combos">COMBOS</a></li>
-                    <li class="<?=($this->uri->segment(2)==='Cupckes')?'active':''?>"><a href="<?php echo base_url();?>Productos/Cupckes">CUPCKES</a></li>
-                    <li class="<?=($this->uri->segment(2)==='Festivo')?'active':''?>"><a href="<?php echo base_url();?>Productos/Festivo">FESTIVO</a></li>
                     <li class="<?=($this->uri->segment(2)==='Postres')?'active':''?>"><a href="<?php echo base_url();?>Productos/Postres">POSTRES Y TORTAS</a></li>
+                    <li class="<?=($this->uri->segment(2)==='BocaditosSalados')?'active':''?>"><a href="<?php echo base_url();?>Productos/BocaditosSalados">BOCADITOS SALADOS</a></li>
+                    <li class="<?=($this->uri->segment(2)==='BocaditosDulces')?'active':''?>"><a href="<?php echo base_url();?>Productos/BocaditosDulces">BOCADITOS DULCES</a></li>
+                    <li class="<?=($this->uri->segment(2)==='Piqueos')?'active':''?>"><a href="<?php echo base_url();?>Productos/Piqueos">PIQUEOS TRADICIONALES</a></li>
+                    <li class="<?=($this->uri->segment(2)==='PiqueosPeruanos')?'active':''?>"><a href="<?php echo base_url();?>Productos/PiqueosPeruanos">PIQUEOS PERUANOS</a></li>
+                    <li class="<?=($this->uri->segment(2)==='CupckesTradicionales')?'active':''?>"><a href="<?php echo base_url();?>Productos/CupckesTradicionales">CUPCKES TRADICIONALES</a></li>
+                    <li class="<?=($this->uri->segment(2)==='CupckesGigantes')?'active':''?>"><a href="<?php echo base_url();?>Productos/CupckesGigantes">CUPCKES GIGANTES</a></li>
+                    <li class="<?=($this->uri->segment(2)==='CupckesFruta')?'active':''?>"><a href="<?php echo base_url();?>Productos/CupckesFruta">CUPCKES FRUTA</a></li>
+                    <li class="<?=($this->uri->segment(2)==='Combos')?'active':''?>"><a href="<?php echo base_url();?>Productos/Combos">COMBOS</a></li>
+                    <li class="<?=($this->uri->segment(2)==='Festivo')?'active':''?>"><a href="<?php echo base_url();?>Productos/Festivo">FESTIVO</a></li>
                 </ul>
             </li>
             <li class="liMenusActive">

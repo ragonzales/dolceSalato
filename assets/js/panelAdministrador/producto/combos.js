@@ -1,1 +1,1 @@
-var CATEGORIA = 2;
+var CATEGORIA = 8;

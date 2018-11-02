@@ -33,14 +33,41 @@
 	<?php if($this->uri->segment(1)=='Coberturas'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/cobertura.js"></script>
 		<script type="text/javascript">
-			console.log("asdsad");
+			// console.log("asdsad");
 		</script>
 	<?php }?>
 
-	<!--BOCADITOS-->
-	<?php if($this->uri->segment(2)=='Bocaditos'){?>
+	<!--BOCADITOS DULCES-->
+	<?php if($this->uri->segment(2)=='BocaditosDulces'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
-		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditos.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditosdulces.js"></script>
+		<script type="text/javascript">
+			NOMBRE_IMAGEN = 'product/Bocaditos.png';
+		</script>
+	<?php }?>
+
+	<!--BOCADITOS SALADOS-->
+	<?php if($this->uri->segment(2)=='BocaditosSalados'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/bocaditossalados.js"></script>
+		<script type="text/javascript">
+			NOMBRE_IMAGEN = 'product/Bocaditos.png';
+		</script>
+	<?php }?>
+
+	<!--PIQUEOS-->
+	<?php if($this->uri->segment(2)=='Piqueos'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/piqueos.js"></script>
+		<script type="text/javascript">
+			NOMBRE_IMAGEN = 'product/Bocaditos.png';
+		</script>
+	<?php }?>
+
+	<!--PIQUEOS PERUANOS-->
+	<?php if($this->uri->segment(2)=='PiqueosPeruanos'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/piqueosPeruanos.js"></script>
 		<script type="text/javascript">
 			NOMBRE_IMAGEN = 'product/Bocaditos.png';
 		</script>
@@ -55,10 +82,28 @@
 		</script>
 	<?php }?>
 
-	<!--CUPCKES-->
-	<?php if($this->uri->segment(2)=='Cupckes'){?>
+	<!--CUPCKES GIGANTES-->
+	<?php if($this->uri->segment(2)=='CupckesGigantes'){?>
 		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
-		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckes.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckesgigantes.js"></script>
+		<script type="text/javascript">
+			NOMBRE_IMAGEN = 'product/Cupckes.png';
+		</script>
+	<?php }?>
+
+	<!--CUPCKES TRADICIONALES-->
+	<?php if($this->uri->segment(2)=='CupckesTradicionales'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckestradicionales.js"></script>
+		<script type="text/javascript">
+			NOMBRE_IMAGEN = 'product/Cupckes.png';
+		</script>
+	<?php }?>
+
+	<!--CUPCKES FRUTA-->
+	<?php if($this->uri->segment(2)=='CupckesFruta'){?>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/producto.js"></script>
+		<script src="<?php echo base_url();?>assets/js/panelAdministrador/producto/cupckesfruta.js"></script>
 		<script type="text/javascript">
 			NOMBRE_IMAGEN = 'product/Cupckes.png';
 		</script>

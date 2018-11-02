@@ -1,1 +1,0 @@
-var CATEGORIA= 1;

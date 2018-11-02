@@ -28,21 +28,66 @@ class Productos extends CI_Controller {
 		$this->load->view('layout/footer');
 	}
 
-	/*BOCADITOS*/
-	public function Bocaditos()
+	/*BOCADITOS DULCES*/
+	public function BocaditosDulces()
 	{
 		$this->load->view('layout/header');
 		$this->load->view('layout/menu');
-		$this->load->view('producto/Bocaditos');
+		$this->load->view('producto/BocaditosDulces');
 		$this->load->view('layout/footer');
 	}
 
-	/*CUPCKES*/
-	public function Cupckes()
+	/*BOCADITOS SALADOS*/
+	public function BocaditosSalados()
 	{
 		$this->load->view('layout/header');
 		$this->load->view('layout/menu');
-		$this->load->view('producto/Cupckes');
+		$this->load->view('producto/BocaditosSalados');
+		$this->load->view('layout/footer');
+	}
+
+	/*PIQUEOS*/
+	public function Piqueos()
+	{
+		$this->load->view('layout/header');
+		$this->load->view('layout/menu');
+		$this->load->view('producto/Piqueos');
+		$this->load->view('layout/footer');
+	}
+
+	/*PIQUEOS PERUANOS*/
+	public function PiqueosPeruanos()
+	{
+		$this->load->view('layout/header');
+		$this->load->view('layout/menu');
+		$this->load->view('producto/PiqueosPeruanos');
+		$this->load->view('layout/footer');
+	}
+
+	/*CUPCKES TRADICIONALES*/
+	public function CupckesTradicionales()
+	{
+		$this->load->view('layout/header');
+		$this->load->view('layout/menu');
+		$this->load->view('producto/CupckesTradicionales');
+		$this->load->view('layout/footer');
+	}
+
+	/*CUPCKES GIGANTES*/
+	public function CupckesGigantes()
+	{
+		$this->load->view('layout/header');
+		$this->load->view('layout/menu');
+		$this->load->view('producto/CupckesGigantes');
+		$this->load->view('layout/footer');
+	}
+
+	/*CUPCKES FRUTA*/
+	public function CupckesFruta()
+	{
+		$this->load->view('layout/header');
+		$this->load->view('layout/menu');
+		$this->load->view('producto/CupckesFruta');
 		$this->load->view('layout/footer');
 	}
 
@@ -202,20 +247,38 @@ class Productos extends CI_Controller {
 	{
 		switch ($IdCategoria) {
 			case '1':
-				$dir = './Upload_Bocaditos/';
+				$dir = './Upload_Postres/';
 				break;
 			case '2':
-				$dir = './Upload_Combos/';
+				$dir = './Upload_Bocaditos_Salados/';
 				break;
 			case '3':
-				$dir = './Upload_Cupckes/';
+				$dir = './Upload_Bocaditos_Dulces/';	
 				break;
 			case '4':
-				$dir = './Upload_Festivo/';
+				$dir = './Upload_Piqueos_Tradicionales/';
 				break;
 			case '5':
-				$dir = './Upload_Postres/';				
+				$dir = './Upload_Piqueos_Peruanos/';
 				break;
+			case '6':
+				$dir = './Upload_Cupckes_Tradicionales/';
+				break;
+			case '7':
+				$dir = './Upload_Cupckes_Gigantes/';
+				break;
+			case '8':
+				$dir = './Upload_Combos/';
+				break;
+			case '9':
+				$dir = './Upload_Tendencias/';
+				break;
+			case '10':
+				$dir = './Upload_Festivo/';
+				break;
+			case '11':
+				$dir = './Upload_Cupckes_Fruta/';
+				break;				
 		}
 		return $dir;
 	}

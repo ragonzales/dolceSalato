@@ -11,6 +11,6 @@ function ObtenerDatosAcceso(){
     }
     else
     {
-        location.href =BASE_URL;
+        location.href = BASE_URL;
     }
 }

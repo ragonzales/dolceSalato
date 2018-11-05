@@ -24,7 +24,7 @@
 	<link href="<?php echo base_url();?>assets/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" />
 	<link href="<?php echo base_url();?>assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
 	<script src="<?php echo base_url();?>assets/plugins/pace/pace.min.js"></script>	
-	<link href="<?php echo base_url();?>assets/css/generico.css" rel="stylesheet" />	
+	<link href="<?php echo base_url();?>assets/css/generico.css" rel="stylesheet" />
 </head>
 <body>
 	<div id="page-loader" class="fade"></div>
@@ -45,7 +45,7 @@
 						<span class="d-none d-md-inline" id="spanNombreUsuario"></span> <b class="caret"></b>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
-						<a href="#" id="btnSalir" class="dropdown-item">Salir</a>
+						<a href="javascript:;" id="btnSalir" class="dropdown-item">Salir</a>
 					</div>
 				</li>
 			</ul>
